@@ -24,8 +24,7 @@ void main() {
     Hero expectedHero2 = Hero(2, "npc_dota_hero_axe", "Axe", "axe");
 
     IHttpClient fakeClient = MockHttpClient();
-    when(fakeClient.get(any))
-        .thenAnswer((realInvocation) async => multipleHeroesJson);
+    when(fakeClient.get(any)).thenAnswer((_) async => multipleHeroesJson);
 
     IStratzClient client = StratzClient(fakeClient);
 

@@ -18,11 +18,11 @@ void main() {
     when(client.getHeroes()).thenAnswer((_) async => clientReponse);
 
     blocTest<HeroesCubit, HeroesCubitState>("Emits state with Heores",
-        build: () => HeroesCubit(client),
+        build: () => HeroesCubit(client: client),
         act: (cubit) async => cubit.getHeroes(),
         expect: [
-          HeroesCubitState(true, []),
-          HeroesCubitState(false, clientReponse)
+          HeroesCubitState(isLoading: true, heroes: []),
+          HeroesCubitState(isLoading: false, heroes: clientReponse)
         ]);
   });
 }

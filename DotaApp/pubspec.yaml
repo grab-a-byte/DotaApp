@@ -18,6 +18,7 @@ dependencies:
   flutter_bloc: ^6.1.1
   bloc: ^6.1.0
   equatable: ^1.2.5
+  get_it: ^5.0.1
 
 dev_dependencies:
   flutter_test:

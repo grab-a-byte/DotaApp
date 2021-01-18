@@ -1,5 +1,5 @@
 import 'package:DotaApp/infrastructure/get_it.dart';
-import 'package:DotaApp/pages/HeroesPage.dart';
+import 'package:DotaApp/pages/HeroesPage/HeroesPage.dart';
 import 'package:flutter/material.dart';
 
 import 'client/models/hero.dart' as DotaHero;
@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HeroesPage(),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          scaffoldBackgroundColor: Colors.blue.shade900),
+      home: Scaffold(body: HeroesPage()),
     );
   }
 }

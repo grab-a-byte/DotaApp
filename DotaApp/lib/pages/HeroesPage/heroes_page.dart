@@ -1,8 +1,10 @@
 import 'package:DotaApp/cubits/HeroesCubit/heroes_cubit.dart';
-import 'package:DotaApp/cubits/HeroesCubit/heroes_cubit_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../cubits/HeroesCubit/heroes_cubit_state.dart';
+import 'hero_card.dart';
 
 class HeroesPage extends StatelessWidget {
   @override
@@ -20,16 +22,7 @@ class HeroesPage extends StatelessWidget {
               itemCount: state.heroes.length,
               itemBuilder: (context, index) {
                 var hero = state.heroes[index];
-                return Container(
-                  height: 50,
-                  color: Colors.amber[600],
-                  child: Center(
-                    child: Text(
-                      hero.displayName,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                );
+                return HeroCard(hero);
               },
             );
           }

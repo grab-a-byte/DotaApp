@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:DotaApp/client/stratz_client.dart';
-import 'package:DotaApp/client/stratz_client_interface.dart';
-import 'package:DotaApp/infrastructure/http_client.dart';
-import 'package:DotaApp/infrastructure/http_client_interface.dart';
 import 'package:get_it/get_it.dart';
+
+import '../client/stratz_client.dart';
+import '../client/stratz_client_interface.dart';
+import 'http_client.dart';
+import 'http_client_interface.dart';
 
 GetIt getIt = GetIt.instance;
 

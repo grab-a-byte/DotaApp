@@ -1,11 +1,7 @@
-import 'package:DotaApp/infrastructure/get_it.dart';
-import 'package:DotaApp/pages/HeroesPage/HeroesPage.dart';
 import 'package:flutter/material.dart';
 
-import 'client/models/hero.dart' as DotaHero;
-import 'client/stratz_client.dart';
-import 'client/stratz_client_interface.dart';
-import 'infrastructure/http_client.dart';
+import 'infrastructure/get_it.dart';
+import 'pages/HeroesPage/heroes_page.dart';
 
 void main() {
   setupDependencyInjection();

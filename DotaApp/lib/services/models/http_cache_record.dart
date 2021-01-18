@@ -1,4 +1,6 @@
-class HttpCacheRecord {
+import 'package:equatable/equatable.dart';
+
+class HttpCacheRecord extends Equatable {
   static String UniqueUrlColumnName = "uniqueUrl";
   static String CalledDateTimeColumnName = "calledDateTime";
   static String ResponseColumnName = "response";
@@ -23,4 +25,7 @@ class HttpCacheRecord {
       ResponseColumnName: response
     };
   }
+
+  @override
+  List<Object> get props => [uniqueUrl, dateTime, response];
 }

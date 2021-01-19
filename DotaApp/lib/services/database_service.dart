@@ -18,7 +18,7 @@ class DatabaseService implements IDatabseService {
       CREATE TABLE $_tableName (
         ${HttpCacheRecord.UniqueUrlColumnName} TEXT PRIMARY KEY,
         ${HttpCacheRecord.CalledDateTimeColumnName} TEXT NOT NULL,
-        ${HttpCacheRecord.ResponseColumnName} TEXT NOT NULL,
+        ${HttpCacheRecord.ResponseColumnName} TEXT NOT NULL
       )
       '''
   ];
@@ -61,7 +61,7 @@ class DatabaseService implements IDatabseService {
   Future<Result<HttpCacheRecord>> get(String url) async {
     Database database = await _getDatabase();
     var result = await database
-        .rawQuery("SELECT * FROM DotaAppCache WHERE UniqueUrl = $url");
+        .rawQuery('SELECT * FROM DotaAppCache WHERE UniqueUrl = "$url"');
 
     return result.isEmpty
         ? Result.error()

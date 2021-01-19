@@ -28,6 +28,8 @@ class HttpCache implements IHttpCache {
       } else {
         _databaseService.update(newRecord);
       }
+
+      return newRecord.response;
     }
     return record.data.response;
   }

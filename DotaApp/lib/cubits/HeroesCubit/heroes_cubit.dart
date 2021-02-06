@@ -1,8 +1,8 @@
-import 'package:DotaApp/infrastructure/get_it.dart';
 import 'package:bloc/bloc.dart';
 
 import '../../client/models/hero.dart';
 import '../../client/stratz_client_interface.dart';
+import '../../infrastructure/get_it.dart';
 import 'heroes_cubit_state.dart';
 
 final defaultState = HeroesCubitState(isLoading: true, heroes: []);

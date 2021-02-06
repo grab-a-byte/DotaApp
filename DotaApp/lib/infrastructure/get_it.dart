@@ -15,9 +15,12 @@ GetIt getIt = GetIt.instance;
 
 void setupDependencyInjection() {
   getIt.registerLazySingleton<IDatabseService>(() => DatabaseService());
+
   getIt.registerLazySingleton<IHttpClient>(() => HttpClient());
+
   getIt.registerLazySingleton<IHttpCache>(
       () => HttpCache(getIt.get<IDatabseService>()));
+
   getIt.registerFactory<IStratzClient>(
       () => StratzClient(getIt.get<IHttpClient>(), getIt.get<IHttpCache>()));
 }

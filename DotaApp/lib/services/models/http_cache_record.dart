@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class HttpCacheRecord extends Equatable {
-  static String UniqueUrlColumnName = "uniqueUrl";
-  static String CalledDateTimeColumnName = "calledDateTime";
-  static String ResponseColumnName = "response";
+  static String uniqueUrlColumnName = "uniqueUrl";
+  static String calledDateTimeColumnName = "calledDateTime";
+  static String responseColumnName = "response";
 
   final String uniqueUrl;
   final DateTime dateTime;
@@ -13,16 +13,16 @@ class HttpCacheRecord extends Equatable {
 
   factory HttpCacheRecord.fromMap(Map<String, dynamic> json) {
     return HttpCacheRecord(
-        json[UniqueUrlColumnName] as String,
-        DateTime.parse(json[CalledDateTimeColumnName]),
-        json[ResponseColumnName]);
+        json[uniqueUrlColumnName] as String,
+        DateTime.parse(json[calledDateTimeColumnName]),
+        json[responseColumnName]);
   }
 
   Map<String, dynamic> toMap() {
     return {
-      UniqueUrlColumnName: uniqueUrl,
-      CalledDateTimeColumnName: dateTime.toString(),
-      ResponseColumnName: response
+      uniqueUrlColumnName: uniqueUrl,
+      calledDateTimeColumnName: dateTime.toString(),
+      responseColumnName: response
     };
   }
 

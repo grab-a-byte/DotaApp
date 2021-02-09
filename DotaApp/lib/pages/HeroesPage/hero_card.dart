@@ -16,11 +16,11 @@ class HeroCard extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: Row(
             children: [
-              FittedBox(
-                  child: Placeholder(
-                fallbackHeight: 50,
-                fallbackWidth: 50,
-              )),
+              Image.asset(
+                'images/heroes/${_hero.shortName}_vert.png',
+                height: 50,
+                width: 50,
+              ),
               Spacer(),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,

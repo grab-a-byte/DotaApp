@@ -18,32 +18,19 @@ class HeroesPage extends StatelessWidget {
           if (state.isLoading) {
             return CircularProgressIndicator();
           } else {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Expanded(
-                  child: RaisedButton(
-                      onPressed: () => context.read<HeroesCubit>()..getHeroes(),
-                      child: const Text('Enabled Button',
-                          style: TextStyle(fontSize: 20))),
-                ),
-                Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const Divider(),
-                    padding: const EdgeInsets.all(8),
-                    itemCount: state.heroes.length,
-                    itemBuilder: (context, index) {
-                      var hero = state.heroes[index];
-                      return BlocBuilder<NavigationCubit, NavigationState>(
-                          builder: (context, state) => HeroCard(
-                              hero,
-                              () => context
-                                  .read<NavigationCubit>()
-                                  .navigateToHeroesPage(hero.id)));
-                    },
-                  ),
-                ),
-              ],
+            return ListView.separated(
+              separatorBuilder: (context, index) => const Divider(),
+              padding: const EdgeInsets.all(8),
+              itemCount: state.heroes.length,
+              itemBuilder: (context, index) {
+                var hero = state.heroes[index];
+                return BlocBuilder<NavigationCubit, NavigationState>(
+                    builder: (context, state) => HeroCard(
+                        hero,
+                        () => context
+                            .read<NavigationCubit>()
+                            .navigateToHeroesPage(hero.id)));
+              },
             );
           }
         },

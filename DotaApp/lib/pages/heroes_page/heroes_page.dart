@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/HeroesCubit/heroes_cubit.dart';
-import '../../cubits/HeroesCubit/heroes_cubit_state.dart';
-import '../../cubits/NavigationCubit/navigation_cubit.dart';
-import '../../cubits/NavigationCubit/navigation_state.dart';
+import '../../cubits/heroes_cubit/heroes_cubit.dart';
+import '../../cubits/heroes_cubit/heroes_cubit_state.dart';
+import '../../cubits/navigation_cubit/navigation_cubit.dart';
+import '../../cubits/navigation_cubit/navigation_state.dart';
 import 'hero_card.dart';
 
 class HeroesPage extends StatelessWidget {

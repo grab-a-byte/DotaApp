@@ -1,11 +1,11 @@
 import 'package:DotaApp/client/stratz_client_interface.dart';
-import 'package:DotaApp/cubits/HeroesCubit/heroes_cubit.dart';
-import 'package:DotaApp/cubits/HeroesCubit/heroes_cubit_state.dart';
+import 'package:DotaApp/cubits/heroes_cubit/heroes_cubit.dart';
+import 'package:DotaApp/cubits/heroes_cubit/heroes_cubit_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../helpers/HeroesHelpers.dart';
+import '../helpers/heroes_helpers.dart';
 
 class MockStratzClient extends Mock implements IStratzClient {}
 

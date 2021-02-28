@@ -1,5 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
 part 'hero.g.dart';
 
+@JsonSerializable()
 class Hero {
   Hero(this.id, this.name, this.displayName, this.shortName);
 

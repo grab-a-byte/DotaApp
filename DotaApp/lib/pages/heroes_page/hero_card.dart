@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../client/models/hero.dart' as dota_hero;
+import '../../client/models/hero/hero.dart' as dota_hero;
 
 class HeroCard extends StatelessWidget {
   final dota_hero.Hero _hero;
-  final Function _onClick;
+  final void Function() _onClick;
 
   HeroCard(this._hero, this._onClick);
 

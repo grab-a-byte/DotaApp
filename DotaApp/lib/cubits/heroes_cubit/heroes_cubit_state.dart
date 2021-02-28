@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../client/models/hero.dart';
+import '../../client/models/hero/hero.dart';
 
 class HeroesCubitState extends Equatable {
   final bool isLoading;

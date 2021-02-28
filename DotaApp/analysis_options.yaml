@@ -7,6 +7,7 @@ linter:
   - camel_case_types
 
 analyzer:
+  avoid_init_to_null : false
   strong-mode:
     #implicit-casts: false
     #implicit-dynamic: false

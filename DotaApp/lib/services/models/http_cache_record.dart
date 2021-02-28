@@ -14,8 +14,8 @@ class HttpCacheRecord extends Equatable {
   factory HttpCacheRecord.fromMap(Map<String, dynamic> json) {
     return HttpCacheRecord(
         json[uniqueUrlColumnName] as String,
-        DateTime.parse(json[calledDateTimeColumnName]),
-        json[responseColumnName]);
+        DateTime.parse(json[calledDateTimeColumnName] as String),
+        json[responseColumnName] as String);
   }
 
   Map<String, dynamic> toMap() {

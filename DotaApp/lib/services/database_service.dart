@@ -41,7 +41,7 @@ class DatabaseService implements IDatabseService {
 
   Future<Database> _getDatabase() async {
     if (_database != null) return _database;
-    _database = await _initDatabase();
+    _database = (await _initDatabase()) as Database;
     return _database;
   }
 

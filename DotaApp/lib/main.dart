@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubits/NavigationCubit/navigation_cubit.dart';
-import 'cubits/NavigationCubit/navigation_state.dart';
+import 'cubits/navigation_cubit/navigation_cubit.dart';
+import 'cubits/navigation_cubit/navigation_state.dart';
 import 'infrastructure/get_it.dart';
-import 'pages/HeroesPage/heroes_page.dart';
+import 'pages/heroes_page/heroes_page.dart';
 
 void main() {
   setupDependencyInjection();

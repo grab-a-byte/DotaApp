@@ -1,5 +1,5 @@
-import 'package:DotaApp/cubits/NavigationCubit/navigation_cubit.dart';
-import 'package:DotaApp/cubits/NavigationCubit/navigation_state.dart';
+import 'package:DotaApp/cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:DotaApp/cubits/navigation_cubit/navigation_state.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 

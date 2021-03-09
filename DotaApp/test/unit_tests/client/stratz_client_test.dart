@@ -7,8 +7,8 @@ import 'package:DotaApp/infrastructure/http_client_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'models/hero_json.dart';
-import 'models/hero_role_json.dart';
+import 'models/hero/hero_json.dart';
+import 'models/hero_role/hero_role_json.dart';
 
 class MockHttpClient extends Mock implements IHttpClient {}
 

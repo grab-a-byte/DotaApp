@@ -1,11 +1,9 @@
-import 'dart:convert';
-
-import 'package:DotaApp/infrastructure/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../client/models/hero/hero.dart';
 import '../../client/models/hero_role/hero_role.dart';
 import '../../client/stratz_client_interface.dart';
+import '../../infrastructure/get_it.dart';
 import '../../view_models/hero_view_model.dart';
 import 'hero_cubit_state.dart';
 

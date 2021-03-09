@@ -1,3 +1,4 @@
+import 'package:DotaApp/pages/hero_page/hero_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,8 +28,10 @@ class MyApp extends StatelessWidget {
               builder: (context, state) {
                 if (state is NavigateToHomePage) {
                   return _popScopeWithWidget(HeroesPage(), context);
+                } else if (state is NavigateToHeroPage) {
+                  return _popScopeWithWidget(HeroPage(state.heroId), context);
                 } else {
-                  return _popScopeWithWidget(Placeholder(), context);
+                  return Placeholder();
                 }
               },
             ),

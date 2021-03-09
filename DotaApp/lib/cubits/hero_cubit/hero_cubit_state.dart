@@ -1,7 +1,7 @@
-import 'package:DotaApp/view_models/hero_view_model.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../client/models/hero/hero.dart';
+import '../../view_models/hero_view_model.dart';
 
 class HeroCubitState extends Equatable {
   final bool isLoading;

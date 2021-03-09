@@ -10,7 +10,7 @@ import 'stratz_client_interface.dart';
 
 class StratzClient implements IStratzClient {
   final String _heroesEndpoint = "https://api.stratz.com/api/v1/hero";
-  final String _rolesEndpoint = "https://api.stratz.com/api/v1/roles";
+  final String _rolesEndpoint = "https://api.stratz.com/api/v1/hero/roles";
 
   final IHttpClient _client;
   final IHttpCache _cache;

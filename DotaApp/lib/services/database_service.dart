@@ -48,13 +48,15 @@ class DatabaseService implements IDatabseService {
   @override
   void update(HttpCacheRecord record) async {
     var db = await _getDatabase();
-    db.update(_tableName, record.toMap());
+    await db.update(_tableName, record.toMap(),
+        where: '${HttpCacheRecord.uniqueUrlColumnName} = ?',
+        whereArgs: [record.uniqueUrl]);
   }
 
   @override
   void insert(HttpCacheRecord record) async {
     var db = await _getDatabase();
-    db.insert(_tableName, record.toMap());
+    await db.insert(_tableName, record.toMap());
   }
 
   @override

@@ -23,7 +23,7 @@ void main() {
     var expectedRepsonse =
         HeroViewModel(hero.displayName, hero.shortName, [heroRole.name]);
     blocTest("Emits Loading then Hero when getting Hero",
-        build: () => HeroCubit(client),
+        build: () => HeroCubit(client: client),
         act: (cubit) async => await cubit.getHero(1),
         expect: [
           HeroCubitState(isLoading: true, hero: null),

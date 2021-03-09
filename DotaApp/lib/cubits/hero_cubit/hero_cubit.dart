@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:DotaApp/infrastructure/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../client/models/hero/hero.dart';
@@ -11,9 +12,11 @@ import 'hero_cubit_state.dart';
 HeroCubitState defaultState = HeroCubitState(isLoading: false, hero: null);
 
 class HeroCubit extends Cubit<HeroCubitState> {
-  final IStratzClient _client;
+  IStratzClient _client;
 
-  HeroCubit(this._client) : super(defaultState);
+  HeroCubit({IStratzClient client}) : super(defaultState) {
+    _client = client ?? getIt.get<IStratzClient>();
+  }
 
   void getHero(int id) async {
     emit(state.copyWith(isLoading: true));

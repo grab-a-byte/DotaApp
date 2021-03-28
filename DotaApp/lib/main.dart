@@ -13,6 +13,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  var backgroundColors = [
+    Color.fromRGBO(20, 35, 55, 1.0),
+    Color.fromRGBO(13, 62, 130, 1.0),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,20 +25,30 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            scaffoldBackgroundColor: Colors.blue.shade900),
+            scaffoldBackgroundColor: Colors.blueAccent.shade700),
         home: BlocProvider(
           create: (_) => NavigationCubit()..navigateToHomePage(),
           child: Scaffold(
-            body: BlocBuilder<NavigationCubit, NavigationState>(
-              builder: (context, state) {
-                if (state is NavigateToHomePage) {
-                  return _popScopeWithWidget(HeroesPage(), context);
-                } else if (state is NavigateToHeroPage) {
-                  return _popScopeWithWidget(HeroPage(state.heroId), context);
-                } else {
-                  return Placeholder();
-                }
-              },
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: backgroundColors,
+                    begin: const FractionalOffset(1.0, 0.0),
+                    end: const FractionalOffset(1.0, 1.0),
+                    stops: [0.0, 1.0],
+                    tileMode: TileMode.clamp),
+              ),
+              child: BlocBuilder<NavigationCubit, NavigationState>(
+                builder: (context, state) {
+                  if (state is NavigateToHomePage) {
+                    return _popScopeWithWidget(HeroesPage(), context);
+                  } else if (state is NavigateToHeroPage) {
+                    return _popScopeWithWidget(HeroPage(state.heroId), context);
+                  } else {
+                    return Placeholder();
+                  }
+                },
+              ),
             ),
           ),
         ));

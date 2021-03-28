@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../client/stratz_client_interface.dart';
 import '../../cubits/hero_cubit/hero_cubit.dart';
 import '../../cubits/hero_cubit/hero_cubit_state.dart';
+import '../../infrastructure/get_it.dart';
 import '../../view_models/hero_view_model.dart';
 
 class HeroPage extends StatelessWidget {
@@ -13,7 +15,8 @@ class HeroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HeroCubit()..getHero(_heroId),
+      create: (_) =>
+          HeroCubit(client: getIt.get<IStratzClient>())..getHero(_heroId),
       child: BlocBuilder<HeroCubit, HeroCubitState>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -33,7 +36,7 @@ class HeroPage extends StatelessWidget {
         child: Card(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.9,
-            width: MediaQuery.of(context).size.width * 0.8,
+            width: MediaQuery.of(context).size.width * 0.9,
             padding: EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

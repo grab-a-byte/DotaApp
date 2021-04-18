@@ -1,10 +1,10 @@
-import 'package:DotaApp/pages/hero_page/hero_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/navigation_cubit/navigation_cubit.dart';
 import 'cubits/navigation_cubit/navigation_state.dart';
 import 'infrastructure/get_it.dart';
+import 'pages/hero_page/hero_page.dart';
 import 'pages/heroes_page/heroes_page.dart';
 
 void main() {
@@ -13,7 +13,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  var backgroundColors = [
+  final backgroundColors = [
     Color.fromRGBO(20, 35, 55, 1.0),
     Color.fromRGBO(13, 62, 130, 1.0),
   ];

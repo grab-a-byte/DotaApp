@@ -24,9 +24,9 @@ bool matchHeros(Hero hero1, Hero hero2) {
 void main() {
   test("Stratz Client retrives Hero list when asked", () async {
     Hero expectedHero1 =
-        Hero(1, "npc_dota_hero_antimage", "Anti-Mage", "antimage", []);
+        Hero(1, "npc_dota_hero_antimage", "Anti-Mage", "antimage", [], []);
 
-    Hero expectedHero2 = Hero(2, "npc_dota_hero_axe", "Axe", "axe", []);
+    Hero expectedHero2 = Hero(2, "npc_dota_hero_axe", "Axe", "axe", [], []);
 
     IHttpClient fakeClient = MockHttpClient();
 
@@ -40,6 +40,25 @@ void main() {
     expect(result.length, 2);
     expect(matchHeros(expectedHero1, result[0]), true);
     expect(matchHeros(expectedHero2, result[1]), true);
+  });
+
+  test("Stratz Client retrives Hero Roles list when asked", () async {
+    HeroRole expectedRole1 = HeroRole(0, "Carry", "roles.carry");
+
+    HeroRole expectedRole2 = HeroRole(1, "Escape", "roles.escape");
+
+    IHttpClient fakeClient = MockHttpClient();
+
+    IHttpCache fakeCache = MockHttpCache();
+    when(fakeCache.get(any, any)).thenAnswer((_) async => heroRoleJson);
+
+    IStratzClient client = StratzClient(fakeClient, fakeCache);
+
+    List<HeroRole> result = await client.getHeroRoles();
+
+    expect(result.length, 9);
+    expect(expectedRole1, result[0]);
+    expect(expectedRole2, result[1]);
   });
 
   test("Stratz Client retrives Hero Roles list when asked", () async {

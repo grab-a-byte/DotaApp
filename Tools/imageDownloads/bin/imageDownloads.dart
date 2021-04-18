@@ -35,12 +35,15 @@ Future<List<ApiResponse>> getApiResponse(String apiType) async {
 void main(List<String> arguments) async {
   downloadHeroImages();
   downloadItemImages();
+  downloadAbilityImages();
 }
 
 void downloadHeroImages() =>
     downloadImages('hero', 'heroes', imageAppend: '_vert');
 
 void downloadItemImages() => downloadImages('item', 'items');
+
+void downloadAbilityImages() => downloadImages('ability', 'abilities');
 
 void downloadImages(String apiType, String cdnType,
     {String imageAppend = ''}) async {
@@ -50,19 +53,25 @@ void downloadImages(String apiType, String cdnType,
 
   await Directory(downloadsPath).create(recursive: true);
 
-  responses.forEach((apiResponse) async {
-    var image_url =
-        'https://cdn.stratz.com/images/dota2/${cdnType}/${apiResponse.shortName}${imageAppend}.png';
+  for (var apiResponse in responses) {
+    try {
+      var imageName = apiResponse.shortName ?? apiResponse.name;
 
-    print(image_url);
+      var image_url =
+          'https://cdn.stratz.com/images/dota2/${cdnType}/${imageName}${imageAppend}.png';
 
-    var response = await http.get(image_url);
+      print(image_url);
 
-    var filePath =
-        path.join(downloadsPath, '${apiResponse.shortName}_vert.png');
+      var response = await http.get(image_url);
 
-    var file2 = File(filePath);
-    await file2.writeAsBytes(response.bodyBytes,
-        flush: true, mode: FileMode.write);
-  });
+      var filePath = path.join(downloadsPath, '${imageName}_vert.png');
+
+      var file2 = File(filePath);
+      await file2.writeAsBytes(response.bodyBytes,
+          flush: true, mode: FileMode.write);
+    } on Object {
+      return;
+    }
+  }
+  ;
 }

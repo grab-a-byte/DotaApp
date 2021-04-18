@@ -2,8 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../client/models/hero/hero.dart';
+import '../../client/models/hero_ability/hero_ability.dart';
 import '../../client/models/hero_role/hero_role.dart';
 import '../../client/stratz_client_interface.dart';
+import '../../view_models/hero_ability_view_model.dart';
 import '../../view_models/hero_view_model.dart';
 import 'hero_cubit_state.dart';
 
@@ -22,15 +24,30 @@ class HeroCubit extends Cubit<HeroCubitState> {
     Hero hero = heroes.firstWhere((x) => x.id == id);
     List<HeroRole> roles = await _client.getHeroRoles();
 
-    //var abilities = await _client.getHeroAbilities();
+    List<HeroAbility> abilities = await _client.getHeroAbilities();
+
+    List<HeroAbilityViewModel> abilityVms = abilities
+        .where((element) => element.language != null)
+        .where((element) =>
+            element.language.description.isNotEmpty &&
+            element.language.attributes.isNotEmpty)
+        .where((ability) => hero.abilities
+            .map((heroAbility) => heroAbility.abilityId)
+            .contains(ability.id))
+        .map((e) {
+      return HeroAbilityViewModel(
+          e.name, e.language.description.first, e.language.attributes);
+    }).toList();
 
     Iterable<String> roleNames = roles
         .where((role) => hero.roles.map((x) => x.roleId).contains(role.id))
         .map((x) => x.name)
         .toList();
 
-    var vm = HeroViewModel(hero.displayName, hero.shortName, roleNames);
+    var vm =
+        HeroViewModel(hero.displayName, hero.shortName, roleNames, abilityVms);
 
     emit(HeroCubitState(isLoading: false, hero: vm));
   }
 }
+//6251

@@ -5,6 +5,7 @@ import '../../client/stratz_client_interface.dart';
 import '../../cubits/hero_cubit/hero_cubit.dart';
 import '../../cubits/hero_cubit/hero_cubit_state.dart';
 import '../../infrastructure/get_it.dart';
+import '../../view_models/hero_ability_view_model.dart';
 import '../../view_models/hero_view_model.dart';
 
 class HeroPage extends StatelessWidget {
@@ -20,7 +21,7 @@ class HeroPage extends StatelessWidget {
       child: BlocBuilder<HeroCubit, HeroCubitState>(
         builder: (context, state) {
           if (state.isLoading) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else {
             var hero = state.hero;
             return _buildHeroCard(hero, context);
@@ -41,7 +42,8 @@ class HeroPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text(model.name)]
-                ..addAll(model.roles.map((x) => Text(x))),
+                ..addAll(model.roles.map((x) => Text(x)))
+                ..add(_buildHeroAbilitiesRow(model.abilities)),
             ),
           ),
         ),
@@ -56,6 +58,19 @@ class HeroPage extends StatelessWidget {
               )),
         ]),
       ),
+    );
+  }
+
+  Row _buildHeroAbilitiesRow(List<HeroAbilityViewModel> abilities) {
+    return Row(
+      children: abilities
+          .map((e) => Expanded(
+                child: Column(
+                  children: [Text(e.name), Text(e.description)]
+                    ..addAll(e.attributes.map((e) => Text(e))),
+                ),
+              ))
+          .toList(),
     );
   }
 }

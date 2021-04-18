@@ -18,7 +18,7 @@ class HeroesPage extends StatelessWidget {
       child: BlocBuilder<HeroesCubit, HeroesCubitState>(
         builder: (context, state) {
           if (state.isLoading) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else {
             return ListView.separated(
               separatorBuilder: (context, index) => const Divider(),

@@ -1,10 +1,12 @@
-import 'package:DotaApp/client/models/hero_ability/language.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'language.dart';
 
 part 'hero_ability.g.dart';
 
 @JsonSerializable()
-class HeroAbility {
+class HeroAbility extends Equatable {
   final int id;
   final String name;
   final Language language;

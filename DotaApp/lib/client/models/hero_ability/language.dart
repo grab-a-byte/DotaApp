@@ -7,8 +7,9 @@ part 'language.g.dart';
 class Language extends Equatable {
   final String displayName;
   final List<String> description;
+  final List<String> attributes;
 
-  Language(this.displayName, this.description);
+  Language(this.displayName, this.description, this.attributes);
 
   factory Language.fromJson(Map<String, dynamic> json) =>
       _$LanguageFromJson(json);

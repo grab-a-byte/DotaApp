@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/navigation_cubit/navigation_cubit.dart';
@@ -9,6 +10,7 @@ import 'pages/heroes_page/heroes_page.dart';
 
 void main() {
   setupDependencyInjection();
+  //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 

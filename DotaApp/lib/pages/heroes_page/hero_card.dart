@@ -9,9 +9,9 @@ class HeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: GestureDetector(
-        onTap: _onClick,
+    return GestureDetector(
+      onTap: _onClick,
+      child: Card(
         child: Container(
           padding: EdgeInsets.all(10),
           child: Row(

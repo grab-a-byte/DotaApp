@@ -1,4 +1,4 @@
-var singleLanguageJson = """
+String singleLanguageJson = """
 {
   "abilityId": 5086,
   "gameVersionId": 140,

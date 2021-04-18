@@ -1,4 +1,4 @@
-var singleAbilityJson = """
+String singleAbilityJson = """
 {
   "id": 5086,
   "name": "skeleton_king_hellfire_blast",

@@ -39,11 +39,9 @@ class HeroPage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.9,
             width: MediaQuery.of(context).size.width * 0.9,
             padding: EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text(model.name)]
-                ..addAll(model.roles.map((x) => Text(x)))
-                ..add(_buildHeroAbilitiesRow(model.abilities)),
+            child: ListView(
+              children: [_heroHeader(context, model)]
+                ..addAll(_buildHeroAbilitiesRow(model.abilities)),
             ),
           ),
         ),
@@ -61,16 +59,72 @@ class HeroPage extends StatelessWidget {
     );
   }
 
-  Row _buildHeroAbilitiesRow(List<HeroAbilityViewModel> abilities) {
+  Row _heroHeader(BuildContext context, HeroViewModel hero) {
     return Row(
-      children: abilities
-          .map((e) => Expanded(
-                child: Column(
-                  children: [Text(e.name), Text(e.description)]
-                    ..addAll(e.attributes.map((e) => Text(e))),
-                ),
-              ))
-          .toList(),
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Image.asset(hero.heroImageLocation, height: 200.0),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              hero.name,
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              'Roles',
+              style:
+                  TextStyle(fontSize: 15, decoration: TextDecoration.underline),
+            ),
+          ]..addAll(
+              hero.roles
+                  .map((e) => Text(
+                        e,
+                        style: TextStyle(
+                            fontSize: 10, decoration: TextDecoration.underline),
+                      ))
+                  .toList(),
+            ),
+        )
+      ],
     );
+  }
+
+  List<Widget> _buildHeroAbilitiesRow(List<HeroAbilityViewModel> abilities) {
+    return abilities
+        .expand((e) => [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Image.asset(
+                      e.abilityImageLocaton,
+                      height: 60,
+                      errorBuilder: (bc, ex, st) => Container(
+                          height: 60, width: 60, child: Placeholder()),
+                    ),
+                  ),
+                  Expanded(child: Text(e.displayName)),
+                  Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: e.attributes
+                            .map((e) => Text(
+                                  e,
+                                  style: TextStyle(fontSize: 10),
+                                ))
+                            .toList(),
+                      )),
+                ],
+              ),
+              Divider(
+                color: Colors.black,
+                thickness: 2,
+                indent: 20,
+                endIndent: 20,
+              ),
+            ])
+        .toList();
   }
 }

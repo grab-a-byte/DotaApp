@@ -5,8 +5,8 @@ import '../../client/models/hero/hero.dart';
 import '../../client/models/hero_ability/hero_ability.dart';
 import '../../client/models/hero_role/hero_role.dart';
 import '../../client/stratz_client_interface.dart';
-import '../../view_models/hero_ability_view_model.dart';
-import '../../view_models/hero_view_model.dart';
+import '../../view_models/hero_page/hero_ability_view_model.dart';
+import '../../view_models/hero_page/hero_view_model.dart';
 import 'hero_cubit_state.dart';
 
 HeroCubitState defaultState = HeroCubitState(isLoading: false, hero: null);
@@ -35,8 +35,8 @@ class HeroCubit extends Cubit<HeroCubitState> {
             .map((heroAbility) => heroAbility.abilityId)
             .contains(ability.id))
         .map((e) {
-      return HeroAbilityViewModel(
-          e.name, e.language.description.first, e.language.attributes);
+      return HeroAbilityViewModel(e.language.displayName, e.name,
+          e.language.description.first, e.language.attributes);
     }).toList();
 
     Iterable<String> roleNames = roles

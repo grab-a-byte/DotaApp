@@ -7,8 +7,8 @@ import 'package:DotaApp/client/models/hero_ability/hero_ability.dart'
 import 'package:DotaApp/client/stratz_client_interface.dart';
 import 'package:DotaApp/cubits/hero_cubit/hero_cubit.dart';
 import 'package:DotaApp/cubits/hero_cubit/hero_cubit_state.dart';
-import 'package:DotaApp/view_models/hero_ability_view_model.dart';
-import 'package:DotaApp/view_models/hero_view_model.dart';
+import 'package:DotaApp/view_models/hero_page/hero_ability_view_model.dart';
+import 'package:DotaApp/view_models/hero_page/hero_view_model.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -32,6 +32,7 @@ void main() {
     ], [
       HeroAbilityViewModel(
           heroAbility.name,
+          heroAbility.language.displayName,
           heroAbility.language.description.first,
           heroAbility.language.attributes)
     ]);

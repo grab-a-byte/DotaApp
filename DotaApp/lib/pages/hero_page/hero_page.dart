@@ -5,8 +5,8 @@ import '../../client/stratz_client_interface.dart';
 import '../../cubits/hero_cubit/hero_cubit.dart';
 import '../../cubits/hero_cubit/hero_cubit_state.dart';
 import '../../infrastructure/get_it.dart';
-import '../../view_models/hero_ability_view_model.dart';
-import '../../view_models/hero_view_model.dart';
+import '../../view_models/hero_page/hero_ability_view_model.dart';
+import '../../view_models/hero_page/hero_view_model.dart';
 
 class HeroPage extends StatelessWidget {
   final int _heroId;

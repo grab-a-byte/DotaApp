@@ -8,6 +8,8 @@ class HeroViewModel extends Equatable {
   final List<String> roles;
   final List<HeroAbilityViewModel> abilities;
 
+  String get heroImageLocation => 'images/heroes/${shortName}_vert.png';
+
   HeroViewModel(this.name, this.shortName, this.roles, this.abilities);
 
   @override

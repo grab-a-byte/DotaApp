@@ -1,6 +1,7 @@
 import 'package:DotaApp/client/models/hero/hero.dart';
 import 'package:DotaApp/client/models/hero/hero_role.dart' as h_role;
 import 'package:DotaApp/client/models/hero_ability/language.dart';
+import 'package:DotaApp/client/models/hero_ability/stat.dart';
 import 'package:DotaApp/client/models/hero_role/hero_role.dart' as role;
 import 'package:DotaApp/client/models/hero_ability/hero_ability.dart'
     as ability;
@@ -20,8 +21,8 @@ void main() {
     MockClient client = MockClient();
     Hero hero = Hero(1, "test", "test", "test", [h_role.HeroRole(0, 1)], []);
     role.HeroRole heroRole = role.HeroRole(0, "carry", "roles.carry");
-    ability.HeroAbility heroAbility =
-        ability.HeroAbility(0, "test", Language("test", ["test"], ["test"]));
+    ability.HeroAbility heroAbility = ability.HeroAbility(
+        0, "test", Language("test", ["test"], ["test"]), Stat([1.0], [1.0]));
 
     when(client.getHeroes()).thenAnswer((_) async => [hero]);
     when(client.getHeroRoles()).thenAnswer((_) async => [heroRole]);

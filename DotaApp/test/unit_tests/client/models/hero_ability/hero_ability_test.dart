@@ -13,5 +13,7 @@ void main() {
     expect(result.id, 5086);
     expect(result.name, "skeleton_king_hellfire_blast");
     expect(result.language.displayName, "Wraithfire Blast");
+    expect(result.stat.cooldown, [17.0, 14.0, 11.0, 8.0]);
+    expect(result.stat.manaCost, [95.0, 110.0, 125.0, 140.0]);
   });
 }

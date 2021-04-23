@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'package:DotaApp/client/models/hero/hero.dart';
 import 'package:DotaApp/client/stratz_client_interface.dart';
+import 'package:DotaApp/cubits/hero_cubit/hero_cubit_state.dart';
 import 'package:DotaApp/cubits/heroes_cubit/heroes_cubit.dart';
 import 'package:DotaApp/cubits/heroes_cubit/heroes_cubit_state.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,7 +17,7 @@ void main() {
   group("Heroes Cubit", () {
     IStratzClient client = MockStratzClient();
 
-    var clientReponse = getSingleHeroInList();
+    var clientReponse = getMultipleHeroInList();
 
     when(client.getHeroes()).thenAnswer((_) async => clientReponse);
 
@@ -24,5 +28,17 @@ void main() {
           HeroesCubitState(isLoading: true, heroes: []),
           HeroesCubitState(isLoading: false, heroes: clientReponse)
         ]);
+
+    test("Filters heroes correctly", () async {
+      var cubit = HeroesCubit(client: client);
+
+      await cubit.filterHeroes("bob");
+
+      expect(
+          cubit.state,
+          HeroesCubitState(isLoading: false, heroes: [
+            Hero(1, "bob", "bob", "bob", [], []),
+          ]));
+    });
   });
 }

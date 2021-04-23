@@ -31,25 +31,28 @@ class MyApp extends StatelessWidget {
         home: BlocProvider(
           create: (_) => NavigationCubit()..navigateToHomePage(),
           child: Scaffold(
-            body: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: backgroundColors,
-                    begin: const FractionalOffset(1.0, 0.0),
-                    end: const FractionalOffset(1.0, 1.0),
-                    stops: [0.0, 1.0],
-                    tileMode: TileMode.clamp),
-              ),
-              child: BlocBuilder<NavigationCubit, NavigationState>(
-                builder: (context, state) {
-                  if (state is NavigateToHomePage) {
-                    return _popScopeWithWidget(HeroesPage(), context);
-                  } else if (state is NavigateToHeroPage) {
-                    return _popScopeWithWidget(HeroPage(state.heroId), context);
-                  } else {
-                    return Placeholder();
-                  }
-                },
+            body: SafeArea(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: backgroundColors,
+                      begin: const FractionalOffset(1.0, 0.0),
+                      end: const FractionalOffset(1.0, 1.0),
+                      stops: [0.0, 1.0],
+                      tileMode: TileMode.clamp),
+                ),
+                child: BlocBuilder<NavigationCubit, NavigationState>(
+                  builder: (context, state) {
+                    if (state is NavigateToHomePage) {
+                      return _popScopeWithWidget(HeroesPage(), context);
+                    } else if (state is NavigateToHeroPage) {
+                      return _popScopeWithWidget(
+                          HeroPage(state.heroId), context);
+                    } else {
+                      return Placeholder();
+                    }
+                  },
+                ),
               ),
             ),
           ),

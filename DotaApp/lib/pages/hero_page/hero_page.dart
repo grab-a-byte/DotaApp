@@ -100,8 +100,6 @@ class HeroPage extends StatelessWidget {
                     child: Image.asset(
                       e.abilityImageLocaton,
                       height: 60,
-                      errorBuilder: (bc, ex, st) => Container(
-                          height: 60, width: 60, child: Placeholder()),
                     ),
                   ),
                   Expanded(child: Text(e.displayName)),

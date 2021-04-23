@@ -7,6 +7,7 @@ import '../../cubits/heroes_cubit/heroes_cubit_state.dart';
 import '../../cubits/navigation_cubit/navigation_cubit.dart';
 import '../../cubits/navigation_cubit/navigation_state.dart';
 import '../../infrastructure/get_it.dart';
+import '../../widgets/debouncable_textbox.dart';
 import 'hero_card.dart';
 
 class HeroesPage extends StatelessWidget {
@@ -20,19 +21,32 @@ class HeroesPage extends StatelessWidget {
           if (state.isLoading) {
             return Center(child: CircularProgressIndicator());
           } else {
-            return ListView.separated(
-              separatorBuilder: (context, index) => const Divider(),
-              padding: const EdgeInsets.all(8),
-              itemCount: state.heroes.length,
-              itemBuilder: (context, index) {
-                var hero = state.heroes[index];
-                return BlocBuilder<NavigationCubit, NavigationState>(
-                    builder: (context, state) => HeroCard(
-                        hero,
-                        () => context
-                            .read<NavigationCubit>()
-                            .navigateToHeroesPage(hero.id)));
-              },
+            return Column(
+              children: [
+                DebouncableTextbox(
+                  (value) {
+                    context.read<HeroesCubit>().filterHeroes(value);
+                  },
+                  500,
+                  Icons.search,
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const Divider(),
+                    padding: const EdgeInsets.all(8),
+                    itemCount: state.heroes.length,
+                    itemBuilder: (context, index) {
+                      var hero = state.heroes[index];
+                      return BlocBuilder<NavigationCubit, NavigationState>(
+                          builder: (context, state) => HeroCard(
+                              hero,
+                              () => context
+                                  .read<NavigationCubit>()
+                                  .navigateToHeroesPage(hero.id)));
+                    },
+                  ),
+                ),
+              ],
             );
           }
         },

@@ -19,4 +19,14 @@ class HeroesCubit extends Cubit<HeroesCubitState> {
     List<Hero> heroes = await _client.getHeroes();
     emit(state.copyWith(isLoading: false, heroes: heroes));
   }
+
+  void filterHeroes(String name) async {
+    emit(state.copyWith(isLoading: true));
+    List<Hero> heroes = await _client.getHeroes();
+    Iterable<Hero> filteredHeroes = heroes
+        .where((element) =>
+            element.displayName.toLowerCase().contains(name.toLowerCase()))
+        .toList();
+    emit(state.copyWith(isLoading: false, heroes: filteredHeroes));
+  }
 }

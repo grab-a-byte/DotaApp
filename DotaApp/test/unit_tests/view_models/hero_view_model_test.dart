@@ -7,12 +7,12 @@ void main() {
     var instance1 = HeroViewModel("Test", "test", [
       "test"
     ], [
-      HeroAbilityViewModel("test", "test", "test", ["test"])
+      HeroAbilityViewModel("test", "test", "test", ["test"], [], [])
     ]);
     var instance2 = HeroViewModel("Test", "test", [
       "test"
     ], [
-      HeroAbilityViewModel("test", "test", "test", ["test"])
+      HeroAbilityViewModel("test", "test", "test", ["test"], [], [])
     ]);
 
     expect(instance1 == instance2, true);

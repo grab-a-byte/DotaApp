@@ -35,8 +35,14 @@ class HeroCubit extends Cubit<HeroCubitState> {
             .map((heroAbility) => heroAbility.abilityId)
             .contains(ability.id))
         .map((e) {
-      return HeroAbilityViewModel(e.language.displayName, e.name,
-          e.language.description.first, e.language.attributes);
+      return HeroAbilityViewModel(
+        e.language.displayName,
+        e.name,
+        e.language.description.first,
+        e.language.attributes,
+        e.stat.cooldown,
+        e.stat.manaCost,
+      );
     }).toList();
 
     Iterable<String> roleNames = roles

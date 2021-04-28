@@ -32,10 +32,13 @@ void main() {
       heroRole.name
     ], [
       HeroAbilityViewModel(
-          heroAbility.name,
-          heroAbility.language.displayName,
-          heroAbility.language.description.first,
-          heroAbility.language.attributes)
+        heroAbility.name,
+        heroAbility.language.displayName,
+        heroAbility.language.description.first,
+        heroAbility.language.attributes,
+        [1.0],
+        [1.0],
+      )
     ]);
     blocTest("Emits Loading then Hero when getting Hero",
         build: () => HeroCubit(client: client),

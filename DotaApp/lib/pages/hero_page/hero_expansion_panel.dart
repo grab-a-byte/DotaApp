@@ -1,3 +1,4 @@
+import 'package:DotaApp/pages/hero_page/hero_ability_body.dart';
 import 'package:flutter/material.dart';
 
 import '../../view_models/hero_page/hero_ability_view_model.dart';
@@ -17,7 +18,7 @@ class HeroExpansionPanelState extends State<StatefulWidget> {
 
   HeroExpansionPanelState(List<HeroAbilityViewModel> models) {
     _rows = models
-        .map((e) => HeroRows(HeroAbilityHeader(e), Placeholder()))
+        .map((e) => HeroRows(HeroAbilityHeader(e), HeroAbilityBody(e)))
         .toList();
   }
 

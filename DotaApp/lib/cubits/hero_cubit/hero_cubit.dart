@@ -39,9 +39,12 @@ class HeroCubit extends Cubit<HeroCubitState> {
         e.language.displayName,
         e.name,
         e.language.description.first,
+        e.language.lore,
         e.language.attributes,
         e.stat.cooldown,
         e.stat.manaCost,
+        e.stat.damage,
+        e.language.notes,
       );
     }).toList();
 

@@ -6,10 +6,13 @@ part 'language.g.dart';
 @JsonSerializable()
 class Language extends Equatable {
   final String displayName;
+  final String lore;
   final List<String> description;
   final List<String> attributes;
+  final List<String> notes;
 
-  Language(this.displayName, this.description, this.attributes);
+  Language(this.displayName, this.description, this.lore, this.attributes,
+      this.notes);
 
   factory Language.fromJson(Map<String, dynamic> json) =>
       _$LanguageFromJson(json);

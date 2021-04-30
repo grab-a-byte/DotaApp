@@ -22,7 +22,10 @@ void main() {
     Hero hero = Hero(1, "test", "test", "test", [h_role.HeroRole(0, 1)], []);
     role.HeroRole heroRole = role.HeroRole(0, "carry", "roles.carry");
     ability.HeroAbility heroAbility = ability.HeroAbility(
-        0, "test", Language("test", ["test"], ["test"]), Stat([1.0], [1.0]));
+        0,
+        "test",
+        Language("test", ["test"], "test", ["test"], ["test"]),
+        Stat([1.0], [1.0], [1.0]));
 
     when(client.getHeroes()).thenAnswer((_) async => [hero]);
     when(client.getHeroRoles()).thenAnswer((_) async => [heroRole]);
@@ -32,13 +35,15 @@ void main() {
       heroRole.name
     ], [
       HeroAbilityViewModel(
-        heroAbility.name,
-        heroAbility.language.displayName,
-        heroAbility.language.description.first,
-        heroAbility.language.attributes,
-        [1.0],
-        [1.0],
-      )
+          heroAbility.name,
+          heroAbility.language.displayName,
+          heroAbility.language.description.first,
+          heroAbility.language.lore,
+          heroAbility.language.attributes,
+          [1.0],
+          [1.0],
+          [1.0],
+          ["test"])
     ]);
     blocTest("Emits Loading then Hero when getting Hero",
         build: () => HeroCubit(client: client),

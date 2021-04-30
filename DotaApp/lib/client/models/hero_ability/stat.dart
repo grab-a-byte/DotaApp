@@ -7,8 +7,9 @@ part 'stat.g.dart';
 class Stat extends Equatable {
   final List<double> manaCost;
   final List<double> cooldown;
+  final List<double> damage;
 
-  Stat(this.cooldown, this.manaCost);
+  Stat(this.cooldown, this.manaCost, this.damage);
 
   factory Stat.fromJson(Map<String, dynamic> json) => _$StatFromJson(json);
   Map<String, dynamic> toJson() => _$StatToJson(this);

@@ -29,8 +29,12 @@ class HeroCubit extends Cubit<HeroCubitState> {
 
     List<HeroAbility> abilities = await _client.getHeroAbilities();
 
-    List<HeroAbilityViewModel> abilityVms =
-        mapper.toHeroAbilityViewModels(abilities);
+    List<HeroAbilityViewModel> abilityVms = mapper.toHeroAbilityViewModels(
+        abilities
+            .where((ability) => hero.abilities
+                .map((heroAbility) => heroAbility.abilityId)
+                .contains(ability.id))
+            .toList());
 
     Iterable<String> roleNames = roles
         .where((role) => hero.roles.map((x) => x.roleId).contains(role.id))

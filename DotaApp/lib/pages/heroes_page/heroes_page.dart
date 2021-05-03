@@ -18,9 +18,9 @@ class HeroesPage extends StatelessWidget {
           HeroesCubit(client: getIt.get<IStratzClient>())..getHeroes(),
       child: BlocBuilder<HeroesCubit, HeroesCubitState>(
         builder: (context, state) {
-          if (state.isLoading) {
+          if (state is LoadingHeroes) {
             return Center(child: CircularProgressIndicator());
-          } else {
+          } else if (state is HeroesLoaded) {
             return Column(
               children: [
                 DebouncableTextbox(
@@ -48,6 +48,8 @@ class HeroesPage extends StatelessWidget {
                 ),
               ],
             );
+          } else {
+            return Placeholder();
           }
         },
       ),

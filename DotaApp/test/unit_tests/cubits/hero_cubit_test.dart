@@ -49,6 +49,9 @@ void main() {
     blocTest("Emits Loading then Hero when getting Hero",
         build: () => HeroCubit(client: client, mapper: HeroAbilityMapper()),
         act: (cubit) async => await cubit.getHero(1),
-        expect: [HeroLoading(), HeroLoaded(expectedRepsonse)]);
+        expect: [
+          HeroLoading(),
+          HeroLoaded(expectedRepsonse),
+        ]);
   });
 }

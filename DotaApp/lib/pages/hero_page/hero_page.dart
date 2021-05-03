@@ -1,4 +1,3 @@
-import 'package:DotaApp/pages/hero_page/hero_expansion_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,9 +5,9 @@ import '../../client/stratz_client_interface.dart';
 import '../../cubits/hero_cubit/hero_cubit.dart';
 import '../../cubits/hero_cubit/hero_cubit_state.dart';
 import '../../infrastructure/get_it.dart';
-import '../../view_models/hero_page/hero_ability_view_model.dart';
+import '../../mappers/hero_ability_to_ability_view_model.dart';
 import '../../view_models/hero_page/hero_view_model.dart';
-import 'hero_ability_header.dart';
+import 'hero_expansion_panel.dart';
 import 'hero_header_row.dart';
 
 class HeroPage extends StatelessWidget {
@@ -19,15 +18,19 @@ class HeroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          HeroCubit(client: getIt.get<IStratzClient>())..getHero(_heroId),
+      create: (_) => HeroCubit(
+        client: getIt.get<IStratzClient>(),
+        mapper: HeroAbilityMapper(),
+      )..getHero(_heroId),
       child: BlocBuilder<HeroCubit, HeroCubitState>(
         builder: (context, state) {
-          if (state.isLoading) {
+          if (state is HeroLoading) {
             return Center(child: CircularProgressIndicator());
-          } else {
+          } else if (state is HeroLoaded) {
             var hero = state.hero;
             return _buildHeroCard(hero, context);
+          } else {
+            return Placeholder();
           }
         },
       ),

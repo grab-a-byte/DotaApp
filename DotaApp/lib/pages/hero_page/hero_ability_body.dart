@@ -1,7 +1,7 @@
-import 'package:DotaApp/widgets/nullable_text_builder.dart';
 import 'package:flutter/material.dart';
 
 import '../../view_models/hero_page/hero_ability_view_model.dart';
+import '../../widgets/nullable_text_builder.dart';
 
 class HeroAbilityBody extends StatelessWidget {
   final HeroAbilityViewModel model;

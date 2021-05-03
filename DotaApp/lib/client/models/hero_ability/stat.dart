@@ -5,8 +5,8 @@ part 'stat.g.dart';
 
 @JsonSerializable()
 class Stat extends Equatable {
-  final List<double> manaCost;
   final List<double> cooldown;
+  final List<double> manaCost;
   final List<double> damage;
 
   Stat(this.cooldown, this.manaCost, this.damage);

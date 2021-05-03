@@ -6,7 +6,7 @@ class HeroAbilityViewModel extends Equatable {
   final List<double> _damage;
 
   final String displayName;
-  final String name;
+  final String _name;
   final String description;
   final List<String> attributes;
   final String lore;
@@ -16,11 +16,11 @@ class HeroAbilityViewModel extends Equatable {
   String get cooldown => _cooldown?.map((e) => e?.toString())?.join('/');
   String get damage => _damage?.map((e) => e?.toString())?.join('/');
 
-  String get abilityImageLocaton => 'images/abilities/${name}_vert.png';
+  String get abilityImageLocaton => 'images/abilities/${_name}_vert.png';
 
   HeroAbilityViewModel(
       this.displayName,
-      this.name,
+      this._name,
       this.description,
       this.lore,
       this.attributes,
@@ -29,5 +29,5 @@ class HeroAbilityViewModel extends Equatable {
       this._damage,
       this.notes);
   @override
-  List<Object> get props => [displayName, name, description, attributes];
+  List<Object> get props => [displayName, _name, description, attributes];
 }

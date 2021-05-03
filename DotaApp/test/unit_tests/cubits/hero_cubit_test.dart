@@ -8,6 +8,7 @@ import 'package:DotaApp/client/models/hero_ability/hero_ability.dart'
 import 'package:DotaApp/client/stratz_client_interface.dart';
 import 'package:DotaApp/cubits/hero_cubit/hero_cubit.dart';
 import 'package:DotaApp/cubits/hero_cubit/hero_cubit_state.dart';
+import 'package:DotaApp/mappers/hero_ability_to_ability_view_model.dart';
 import 'package:DotaApp/view_models/hero_page/hero_ability_view_model.dart';
 import 'package:DotaApp/view_models/hero_page/hero_view_model.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -46,11 +47,8 @@ void main() {
           ["test"])
     ]);
     blocTest("Emits Loading then Hero when getting Hero",
-        build: () => HeroCubit(client: client),
+        build: () => HeroCubit(client: client, mapper: HeroAbilityMapper()),
         act: (cubit) async => await cubit.getHero(1),
-        expect: [
-          HeroCubitState(isLoading: true, hero: null),
-          HeroCubitState(isLoading: false, hero: expectedRepsonse)
-        ]);
+        expect: [HeroLoading(), HeroLoaded(expectedRepsonse)]);
   });
 }

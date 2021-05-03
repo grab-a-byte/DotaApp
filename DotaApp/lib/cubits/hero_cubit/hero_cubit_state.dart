@@ -1,19 +1,19 @@
 import 'package:equatable/equatable.dart';
 
-import '../../client/models/hero/hero.dart';
 import '../../view_models/hero_page/hero_view_model.dart';
 
-class HeroCubitState extends Equatable {
-  final bool isLoading;
+abstract class HeroCubitState {}
+
+class HeroLoading extends Equatable implements HeroCubitState {
+  @override
+  List<Object> get props => ["HeroLoading"];
+}
+
+class HeroLoaded extends Equatable implements HeroCubitState {
   final HeroViewModel hero;
 
-  HeroCubitState({this.isLoading, this.hero});
-
-  HeroCubitState copyWith({bool isLoading, Hero hero}) {
-    return HeroCubitState(
-        hero: hero ?? this.hero, isLoading: isLoading ?? this.isLoading);
-  }
+  HeroLoaded(this.hero);
 
   @override
-  List<Object> get props => [isLoading, hero];
+  List<Object> get props => [hero];
 }

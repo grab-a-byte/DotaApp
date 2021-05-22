@@ -5,9 +5,9 @@ part 'hero_role.g.dart';
 
 @JsonSerializable()
 class HeroRole extends Equatable {
-  final int id;
-  final String name;
-  final String langKey;
+  final int? id;
+  final String? name;
+  final String? langKey;
 
   HeroRole(this.id, this.name, this.langKey);
 
@@ -16,5 +16,5 @@ class HeroRole extends Equatable {
   Map<String, dynamic> toJson() => _$HeroRoleToJson(this);
 
   @override
-  List<Object> get props => [id, name, langKey];
+  List<Object?> get props => [id, name, langKey];
 }

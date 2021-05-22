@@ -13,13 +13,11 @@ import 'package:DotaApp/view_models/hero_page/hero_ability_view_model.dart';
 import 'package:DotaApp/view_models/hero_page/hero_view_model.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
-class MockClient extends Mock implements IStratzClient {}
+import '../mocks_implementations/mock_stratz_client.dart';
 
 void main() {
   group("HeroCubit", () {
-    MockClient client = MockClient();
     Hero hero = Hero(1, "test", "test", "test", [h_role.HeroRole(0, 1)], []);
     role.HeroRole heroRole = role.HeroRole(0, "carry", "roles.carry");
     ability.HeroAbility heroAbility = ability.HeroAbility(
@@ -28,19 +26,20 @@ void main() {
         Language("test", ["test"], "test", ["test"], ["test"]),
         Stat([1.0], [1.0], [1.0]));
 
-    when(client.getHeroes()).thenAnswer((_) async => [hero]);
-    when(client.getHeroRoles()).thenAnswer((_) async => [heroRole]);
-    when(client.getHeroAbilities()).thenAnswer((_) async => [heroAbility]);
+    IStratzClient client = MockStratzClient(
+        heroAbilityResponse: [heroAbility],
+        heroRoleResponse: [heroRole],
+        heroResponse: [hero]);
 
     var expectedRepsonse = HeroViewModel(hero.displayName, hero.shortName, [
       heroRole.name
     ], [
       HeroAbilityViewModel(
           heroAbility.name,
-          heroAbility.language.displayName,
-          heroAbility.language.description.first,
-          heroAbility.language.lore,
-          heroAbility.language.attributes,
+          heroAbility.language!.displayName,
+          heroAbility.language!.description!.first,
+          heroAbility.language!.lore,
+          heroAbility.language!.attributes,
           [1.0],
           [1.0],
           [1.0],
@@ -48,10 +47,10 @@ void main() {
     ]);
     blocTest("Emits Loading then Hero when getting Hero",
         build: () => HeroCubit(client: client, mapper: HeroAbilityMapper()),
-        act: (cubit) async => await cubit.getHero(1),
-        expect: [
-          HeroLoading(),
-          HeroLoaded(expectedRepsonse),
-        ]);
+        act: (dynamic cubit) async => await cubit.getHero(1),
+        expect: () => [
+              HeroLoading(),
+              HeroLoaded(expectedRepsonse),
+            ]);
   });
 }

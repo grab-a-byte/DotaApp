@@ -12,7 +12,7 @@ void main() {
 
     expect(result.displayName, "Wraithfire Blast");
     expect(
-        result.description.first,
+        result.description?.first,
         // ignore: lines_longer_than_80_chars
         'Wraith King sears an enemy unit with spectral fire, dealing damage and stunning, then dealing damage over time and slowing the target.');
   });

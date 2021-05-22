@@ -4,8 +4,8 @@ part 'hero_role.g.dart';
 
 @JsonSerializable()
 class HeroRole {
-  final int roleId;
-  final int level;
+  final int? roleId;
+  final int? level;
 
   HeroRole(this.roleId, this.level);
 

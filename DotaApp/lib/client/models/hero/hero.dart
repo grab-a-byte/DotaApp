@@ -11,22 +11,22 @@ class Hero extends Equatable {
   Hero(this.id, this.name, this.displayName, this.shortName, this.roles,
       this.abilities);
 
-  final int id;
+  final int? id;
 
-  final String name;
+  final String? name;
 
-  final String displayName;
+  final String? displayName;
 
-  final String shortName;
+  final String? shortName;
 
-  final List<HeroRole> roles;
+  final List<HeroRole>? roles;
 
-  final List<HeroAbility> abilities;
+  final List<HeroAbility>? abilities;
 
   factory Hero.fromJson(Map<String, dynamic> json) => _$HeroFromJson(json);
   Map<String, dynamic> toJson() => _$HeroToJson(this);
 
   @override
-  List<Object> get props =>
+  List<Object?> get props =>
       [id, name, displayName, shortName, roles, abilities];
 }

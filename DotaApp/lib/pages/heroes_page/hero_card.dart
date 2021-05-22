@@ -30,7 +30,7 @@ class HeroCard extends StatelessWidget {
                     style: TextStyle(fontSize: 10),
                   ),
                   Text(
-                    _hero.displayName,
+                    _hero.displayName!,
                     style: TextStyle(fontSize: 20),
                   ),
                 ],

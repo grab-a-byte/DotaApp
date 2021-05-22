@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:path/path.dart';
@@ -31,41 +32,41 @@ class DatabaseService implements IDatabseService {
   final config = MigrationConfig(
       initializationScript: initialScript, migrationScripts: migrations);
 
-  static Database _database;
+  static Database? _database;
 
-  _initDatabase() async {
+  Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     return await openDatabaseWithMigration(path, config);
   }
 
-  Future<Database> _getDatabase() async {
+  Future<Database?> _getDatabase() async {
     if (_database != null) return _database;
-    _database = (await _initDatabase()) as Database;
+    _database = (await _initDatabase());
     return _database;
   }
 
   @override
   void update(HttpCacheRecord record) async {
-    var db = await _getDatabase();
-    await db.update(_tableName, record.toMap(),
+    var db = await (_getDatabase());
+    await db?.update(_tableName, record.toMap(),
         where: '${HttpCacheRecord.uniqueUrlColumnName} = ?',
         whereArgs: [record.uniqueUrl]);
   }
 
   @override
   void insert(HttpCacheRecord record) async {
-    var db = await _getDatabase();
-    await db.insert(_tableName, record.toMap());
+    var db = await (_getDatabase());
+    await db?.insert(_tableName, record.toMap());
   }
 
   @override
   Future<Result<HttpCacheRecord>> get(String url) async {
-    Database database = await _getDatabase();
+    Database? database = await _getDatabase();
     var result = await database
-        .rawQuery('SELECT * FROM DotaAppCache WHERE uniqueUrl = "$url"');
+        ?.rawQuery('SELECT * FROM DotaAppCache WHERE uniqueUrl = "$url"');
 
-    return result.isEmpty
+    return (result == null || result.isEmpty)
         ? Result.error()
         : Result.success(HttpCacheRecord.fromMap(result.first));
   }

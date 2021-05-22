@@ -4,8 +4,8 @@ part 'hero_ability.g.dart';
 
 @JsonSerializable()
 class HeroAbility {
-  final int slot;
-  final int abilityId;
+  final int? slot;
+  final int? abilityId;
 
   HeroAbility(this.slot, this.abilityId);
 

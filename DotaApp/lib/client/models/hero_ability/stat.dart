@@ -5,9 +5,9 @@ part 'stat.g.dart';
 
 @JsonSerializable()
 class Stat extends Equatable {
-  final List<double> cooldown;
-  final List<double> manaCost;
-  final List<double> damage;
+  final List<double>? cooldown;
+  final List<double>? manaCost;
+  final List<double>? damage;
 
   Stat(this.cooldown, this.manaCost, this.damage);
 
@@ -15,5 +15,5 @@ class Stat extends Equatable {
   Map<String, dynamic> toJson() => _$StatToJson(this);
 
   @override
-  List<Object> get props => [manaCost, cooldown];
+  List<Object?> get props => [manaCost, cooldown];
 }

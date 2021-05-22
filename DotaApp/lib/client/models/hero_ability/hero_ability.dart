@@ -8,10 +8,10 @@ part 'hero_ability.g.dart';
 
 @JsonSerializable()
 class HeroAbility extends Equatable {
-  final int id;
-  final String name;
-  final Language language;
-  final Stat stat;
+  final int? id;
+  final String? name;
+  final Language? language;
+  final Stat? stat;
 
   HeroAbility(this.id, this.name, this.language, this.stat);
 
@@ -20,5 +20,5 @@ class HeroAbility extends Equatable {
   Map<String, dynamic> toJson() => _$HeroAbilityToJson(this);
 
   @override
-  List<Object> get props => [id, name, language];
+  List<Object?> get props => [id, name, language];
 }

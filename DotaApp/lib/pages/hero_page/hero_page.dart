@@ -11,7 +11,7 @@ import 'hero_expansion_panel.dart';
 import 'hero_header_row.dart';
 
 class HeroPage extends StatelessWidget {
-  final int _heroId;
+  final int? _heroId;
 
   HeroPage(this._heroId);
 

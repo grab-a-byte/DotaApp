@@ -16,7 +16,7 @@ class HeroHeaderRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                hero.name,
+                hero.name!,
                 style: TextStyle(fontSize: 20),
               ),
               Text(
@@ -27,7 +27,7 @@ class HeroHeaderRow extends StatelessWidget {
             ]..addAll(
                 hero.roles
                     .map((e) => Text(
-                          e,
+                          e!,
                           style: TextStyle(
                               fontSize: 10,
                               decoration: TextDecoration.underline),

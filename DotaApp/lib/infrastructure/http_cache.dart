@@ -9,7 +9,7 @@ class HttpCache implements IHttpCache {
 
   final IDatabseService _databaseService;
 
-  HttpCache(IDatabseService databseService)
+  HttpCache(IDatabseService? databseService)
       : _databaseService = databseService ?? getIt.get<IDatabseService>();
 
   bool _isExpired(HttpCacheRecord record) {
@@ -19,7 +19,7 @@ class HttpCache implements IHttpCache {
   @override
   Future<String> get(String url, GetFunction func) async {
     var record = await _databaseService.get(url);
-    if (record.unsuccessful || _isExpired(record.data)) {
+    if (record.unsuccessful || _isExpired(record.data!)) {
       var result = await func(url);
 
       var newRecord = HttpCacheRecord(url, DateTime.now(), result);
@@ -31,6 +31,6 @@ class HttpCache implements IHttpCache {
 
       return newRecord.response;
     }
-    return record.data.response;
+    return record.data!.response;
   }
 }

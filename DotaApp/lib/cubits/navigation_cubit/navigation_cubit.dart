@@ -11,7 +11,7 @@ class NavigationCubit extends Cubit<NavigationState> {
 
   NavigationCubit() : super(_defaultState);
 
-  void navigateToHeroesPage(int heroId) {
+  void navigateToHeroesPage(int? heroId) {
     _pushAndEmit(NavigateToHeroPage(heroId));
   }
 

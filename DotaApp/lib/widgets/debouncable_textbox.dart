@@ -17,14 +17,14 @@ class DebouncableTextbox extends StatefulWidget {
 }
 
 class DebouncableTextboxState extends State<DebouncableTextbox> {
-  Timer _timer;
+  Timer? _timer;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(prefixIcon: Icon(widget._icon)),
       onChanged: (value) {
-        if (_timer?.isActive ?? false) _timer.cancel();
+        if (_timer?.isActive ?? false) _timer!.cancel();
         _timer =
             Timer(Duration(milliseconds: widget._numberOfMilliseconds), () {
           widget._functionToDebounce(value);

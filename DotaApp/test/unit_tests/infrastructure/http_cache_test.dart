@@ -6,7 +6,7 @@ import 'package:DotaApp/services/models/http_cache_record.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class MockDatabseService implements IDatabseService {
-  HttpCacheRecord fakeRecord;
+  HttpCacheRecord? fakeRecord;
 
   @override
   Future<Result<HttpCacheRecord>> get(String url) {
@@ -28,10 +28,10 @@ void main() {
 
     fakeTime = DateTime(2021, 1, 1, 12, 0, 0, 0, 0);
     mockDbService.fakeRecord = HttpCacheRecord(
-        "anything", fakeTime.subtract(Duration(minutes: 15)), "testData");
+        "anything", fakeTime!.subtract(Duration(minutes: 15)), "testData");
 
     HttpCache cache = HttpCache(mockDbService);
-    String result =
+    String? result =
         await cache.get("anything", (_) => Future.value("not correct"));
 
     expect(result, "testData");
@@ -42,10 +42,11 @@ void main() {
 
     fakeTime = DateTime(2021, 1, 1, 12, 0, 0, 0, 0);
     mockDbService.fakeRecord = HttpCacheRecord(
-        "anything", fakeTime.subtract(Duration(minutes: 75)), "testData");
+        "anything", fakeTime!.subtract(Duration(minutes: 75)), "testData");
 
     HttpCache cache = HttpCache(mockDbService);
-    String result = await cache.get("anything", (_) => Future.value("correct"));
+    String? result =
+        await cache.get("anything", (_) => Future.value("correct"));
 
     expect(result, "correct");
   });
@@ -54,7 +55,8 @@ void main() {
     var mockDbService = MockDatabseService();
 
     HttpCache cache = HttpCache(mockDbService);
-    String result = await cache.get("anything", (_) => Future.value("correct"));
+    String? result =
+        await cache.get("anything", (_) => Future.value("correct"));
 
     expect(result, "correct");
   });

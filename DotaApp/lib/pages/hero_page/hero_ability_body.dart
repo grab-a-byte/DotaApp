@@ -23,7 +23,7 @@ class HeroAbilityBody extends StatelessWidget {
           ),
         )
       ]
-        ..addAll(model.attributes.map((e) => Padding(
+        ..addAll(model.attributes!.map((e) => Padding(
               padding: const EdgeInsets.all(5.0),
               child: Text(e),
             )))
@@ -31,13 +31,13 @@ class HeroAbilityBody extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: Text(model.description),
         ))
-        ..addAll(model.notes.map((e) => Padding(
+        ..addAll(model.notes!.map((e) => Padding(
               padding: const EdgeInsets.all(5.0),
               child: Text(e),
             )))
         ..add(Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Text(model.lore),
+          child: Text(model.lore!),
         )),
     );
   }

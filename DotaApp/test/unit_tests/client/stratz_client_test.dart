@@ -5,14 +5,11 @@ import 'package:DotaApp/client/stratz_client.dart';
 import 'package:DotaApp/infrastructure/http_cache_interface.dart';
 import 'package:DotaApp/infrastructure/http_client_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
+import '../mocks_implementations/mock_http_cache.dart';
+import '../mocks_implementations/mock_http_client.dart';
 import 'models/hero/hero_json.dart';
 import 'models/hero_role/hero_role_json.dart';
-
-class MockHttpClient extends Mock implements IHttpClient {}
-
-class MockHttpCache extends Mock implements IHttpCache {}
 
 bool matchHeros(Hero hero1, Hero hero2) {
   return hero1.id == hero2.id &&
@@ -28,10 +25,8 @@ void main() {
 
     Hero expectedHero2 = Hero(2, "npc_dota_hero_axe", "Axe", "axe", [], []);
 
-    IHttpClient fakeClient = MockHttpClient();
-
-    IHttpCache fakeCache = MockHttpCache();
-    when(fakeCache.get(any, any)).thenAnswer((_) async => multipleHeroesJson);
+    IHttpCache fakeCache = MockHttpCache(getValue: multipleHeroesJson);
+    IHttpClient fakeClient = MockHttpClient(getValue: multipleHeroesJson);
 
     IStratzClient client = StratzClient(fakeClient, fakeCache);
 
@@ -47,10 +42,8 @@ void main() {
 
     HeroRole expectedRole2 = HeroRole(1, "Escape", "roles.escape");
 
-    IHttpClient fakeClient = MockHttpClient();
-
-    IHttpCache fakeCache = MockHttpCache();
-    when(fakeCache.get(any, any)).thenAnswer((_) async => heroRoleJson);
+    IHttpCache fakeCache = MockHttpCache(getValue: heroRoleJson);
+    IHttpClient fakeClient = MockHttpClient(getValue: heroRoleJson);
 
     IStratzClient client = StratzClient(fakeClient, fakeCache);
 
@@ -61,22 +54,5 @@ void main() {
     expect(expectedRole2, result[1]);
   });
 
-  test("Stratz Client retrives Hero Roles list when asked", () async {
-    HeroRole expectedRole1 = HeroRole(0, "Carry", "roles.carry");
-
-    HeroRole expectedRole2 = HeroRole(1, "Escape", "roles.escape");
-
-    IHttpClient fakeClient = MockHttpClient();
-
-    IHttpCache fakeCache = MockHttpCache();
-    when(fakeCache.get(any, any)).thenAnswer((_) async => heroRoleJson);
-
-    IStratzClient client = StratzClient(fakeClient, fakeCache);
-
-    List<HeroRole> result = await client.getHeroRoles();
-
-    expect(result.length, 9);
-    expect(expectedRole1, result[0]);
-    expect(expectedRole2, result[1]);
-  });
+  //TODO Add Heroes Abilities
 }

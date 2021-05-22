@@ -13,9 +13,9 @@ class HttpCacheRecord extends Equatable {
 
   factory HttpCacheRecord.fromMap(Map<String, dynamic> json) {
     return HttpCacheRecord(
-        json[uniqueUrlColumnName] as String,
-        DateTime.parse(json[calledDateTimeColumnName] as String),
-        json[responseColumnName] as String);
+        json[uniqueUrlColumnName],
+        DateTime.parse(json[calledDateTimeColumnName]),
+        json[responseColumnName]);
   }
 
   Map<String, dynamic> toMap() {
@@ -27,5 +27,5 @@ class HttpCacheRecord extends Equatable {
   }
 
   @override
-  List<Object> get props => [uniqueUrl, dateTime, response];
+  List<Object?> get props => [uniqueUrl, dateTime, response];
 }

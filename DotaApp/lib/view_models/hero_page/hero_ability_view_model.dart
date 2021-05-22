@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 
 class HeroAbilityViewModel extends Equatable {
-  final List<double> _manacost;
-  final List<double> _cooldown;
-  final List<double> _damage;
+  final List<double>? _manacost;
+  final List<double>? _cooldown;
+  final List<double>? _damage;
 
-  final String displayName;
-  final String _name;
+  final String? displayName;
+  final String? _name;
   final String description;
-  final List<String> attributes;
-  final String lore;
-  final List<String> notes;
+  final List<String>? attributes;
+  final String? lore;
+  final List<String>? notes;
 
-  String get manacost => _manacost?.map((e) => e?.toString())?.join('/');
-  String get cooldown => _cooldown?.map((e) => e?.toString())?.join('/');
-  String get damage => _damage?.map((e) => e?.toString())?.join('/');
+  String? get manacost => _manacost?.map((e) => e.toString()).join('/');
+  String? get cooldown => _cooldown?.map((e) => e.toString()).join('/');
+  String? get damage => _damage?.map((e) => e.toString()).join('/');
 
   String get abilityImageLocaton => 'images/abilities/${_name}_vert.png';
 
@@ -29,5 +29,5 @@ class HeroAbilityViewModel extends Equatable {
       this._damage,
       this.notes);
   @override
-  List<Object> get props => [displayName, _name, description, attributes];
+  List<Object?> get props => [displayName, _name, description, attributes];
 }

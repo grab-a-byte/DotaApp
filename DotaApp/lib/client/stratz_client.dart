@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 
@@ -14,17 +15,17 @@ class StratzClient implements IStratzClient {
   final String _rolesEndpoint = 'https://api.stratz.com/api/v1/hero/roles';
   final String _abilitiesEndpoint = 'https://api.stratz.com/api/v1/ability';
 
-  final IHttpClient _client;
-  final IHttpCache _cache;
+  late final IHttpClient _client;
+  late final IHttpCache _cache;
 
-  StratzClient(IHttpClient client, IHttpCache cache)
+  StratzClient(IHttpClient? client, IHttpCache? cache)
       : _client = client ?? getIt.get<IHttpClient>(),
         _cache = cache ?? getIt.get<IHttpCache>();
 
   @override
   Future<List<Hero>> getHeroes() async {
     String response =
-        await _cache.get(_heroesEndpoint, (x) => _client.get(Uri.parse(x)));
+        await (_cache.get(_heroesEndpoint, (x) => _client.get(Uri.parse(x))));
     LinkedHashMap json = jsonDecode(response);
     return json.values.map((e) => Hero.fromJson(e)).toList();
   }
@@ -32,17 +33,18 @@ class StratzClient implements IStratzClient {
   @override
   Future<List<HeroRole>> getHeroRoles() async {
     String repsonse =
-        await _cache.get(_rolesEndpoint, ((x) => _client.get(Uri.parse(x))));
+        await (_cache.get(_rolesEndpoint, ((x) => _client.get(Uri.parse(x)))));
 
-    Iterable json = jsonDecode(repsonse);
+    List json = jsonDecode(repsonse) as List;
     return json.map((jsonItem) => HeroRole.fromJson(jsonItem)).toList();
   }
 
   @override
   Future<List<HeroAbility>> getHeroAbilities() async {
-    String response =
-        await _cache.get(_abilitiesEndpoint, (x) => _client.get(Uri.parse(x)));
+    String response = await (_cache.get(
+        _abilitiesEndpoint, (x) => _client.get(Uri.parse(x))));
     LinkedHashMap json = jsonDecode(response);
+
     return json.values.map((e) => HeroAbility.fromJson(e)).toList();
   }
 }

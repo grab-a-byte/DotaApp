@@ -24,7 +24,7 @@ class HeroAbilityHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      model.displayName,
+                      model.displayName!,
                       style: TextStyle(fontSize: 15),
                     ),
                     NullableTextBuilder(

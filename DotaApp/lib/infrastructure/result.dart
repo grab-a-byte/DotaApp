@@ -1,6 +1,6 @@
 class Result<T> {
   final bool success;
-  final T data;
+  final T? data;
 
   bool get unsuccessful => !success;
 

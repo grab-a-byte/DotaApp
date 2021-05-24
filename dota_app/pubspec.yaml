@@ -1,4 +1,4 @@
-name: DotaApp
+name: dota_app
 description: An app to allow viewing of stratz.com stats on mobile
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

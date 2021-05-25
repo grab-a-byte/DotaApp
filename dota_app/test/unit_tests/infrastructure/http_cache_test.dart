@@ -1,8 +1,9 @@
-import 'package:DotaApp/infrastructure/http_cache.dart';
-import 'package:DotaApp/infrastructure/result.dart';
-import 'package:DotaApp/infrastructure/time.dart';
-import 'package:DotaApp/services/database_service_interface.dart';
-import 'package:DotaApp/services/models/http_cache_record.dart';
+import 'package:dota_app/infrastructure/http_cache_interface.dart';
+import 'package:dota_app/infrastructure/result.dart';
+import 'package:dota_app/infrastructure/sqlite_http_cache.dart';
+import 'package:dota_app/infrastructure/time.dart';
+import 'package:dota_app/services/database_service_interface.dart';
+import 'package:dota_app/services/models/http_cache_record.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class MockDatabseService implements IDatabseService {
@@ -30,7 +31,7 @@ void main() {
     mockDbService.fakeRecord = HttpCacheRecord(
         "anything", fakeTime!.subtract(Duration(minutes: 15)), "testData");
 
-    HttpCache cache = HttpCache(mockDbService);
+    IHttpCache cache = SqliteHttpCache(mockDbService);
     String? result =
         await cache.get("anything", (_) => Future.value("not correct"));
 
@@ -44,7 +45,7 @@ void main() {
     mockDbService.fakeRecord = HttpCacheRecord(
         "anything", fakeTime!.subtract(Duration(minutes: 75)), "testData");
 
-    HttpCache cache = HttpCache(mockDbService);
+    IHttpCache cache = SqliteHttpCache(mockDbService);
     String? result =
         await cache.get("anything", (_) => Future.value("correct"));
 
@@ -54,7 +55,7 @@ void main() {
   test("Calls retrieval function if there is no record", () async {
     var mockDbService = MockDatabseService();
 
-    HttpCache cache = HttpCache(mockDbService);
+    IHttpCache cache = SqliteHttpCache(mockDbService);
     String? result =
         await cache.get("anything", (_) => Future.value("correct"));
 

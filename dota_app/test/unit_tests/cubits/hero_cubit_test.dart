@@ -1,16 +1,16 @@
-import 'package:DotaApp/client/models/hero/hero.dart';
-import 'package:DotaApp/client/models/hero/hero_role.dart' as h_role;
-import 'package:DotaApp/client/models/hero_ability/language.dart';
-import 'package:DotaApp/client/models/hero_ability/stat.dart';
-import 'package:DotaApp/client/models/hero_role/hero_role.dart' as role;
-import 'package:DotaApp/client/models/hero_ability/hero_ability.dart'
+import 'package:dota_app/client/models/hero/hero.dart';
+import 'package:dota_app/client/models/hero/hero_role.dart' as h_role;
+import 'package:dota_app/client/models/hero_ability/language.dart';
+import 'package:dota_app/client/models/hero_ability/stat.dart';
+import 'package:dota_app/client/models/hero_role/hero_role.dart' as role;
+import 'package:dota_app/client/models/hero_ability/hero_ability.dart'
     as ability;
-import 'package:DotaApp/client/stratz_client_interface.dart';
-import 'package:DotaApp/cubits/hero_cubit/hero_cubit.dart';
-import 'package:DotaApp/cubits/hero_cubit/hero_cubit_state.dart';
-import 'package:DotaApp/mappers/hero_ability_to_ability_view_model.dart';
-import 'package:DotaApp/view_models/hero_page/hero_ability_view_model.dart';
-import 'package:DotaApp/view_models/hero_page/hero_view_model.dart';
+import 'package:dota_app/client/stratz_client_interface.dart';
+import 'package:dota_app/cubits/hero_cubit/hero_cubit.dart';
+import 'package:dota_app/cubits/hero_cubit/hero_cubit_state.dart';
+import 'package:dota_app/mappers/hero_ability_to_ability_view_model.dart';
+import 'package:dota_app/view_models/hero_page/hero_ability_view_model.dart';
+import 'package:dota_app/view_models/hero_page/hero_view_model.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 

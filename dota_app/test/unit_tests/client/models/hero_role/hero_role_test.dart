@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:DotaApp/client/models/hero_role/hero_role.dart';
+import 'package:dota_app/client/models/hero_role/hero_role.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

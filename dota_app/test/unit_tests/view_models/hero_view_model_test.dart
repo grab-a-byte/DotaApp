@@ -1,5 +1,5 @@
-import 'package:DotaApp/view_models/hero_page/hero_ability_view_model.dart';
-import 'package:DotaApp/view_models/hero_page/hero_view_model.dart';
+import 'package:dota_app/view_models/hero_page/hero_ability_view_model.dart';
+import 'package:dota_app/view_models/hero_page/hero_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

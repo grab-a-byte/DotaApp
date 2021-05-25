@@ -1,9 +1,9 @@
-import 'package:DotaApp/client/models/hero/hero.dart';
-import 'package:DotaApp/client/models/hero_role/hero_role.dart';
-import 'package:DotaApp/client/stratz_client_interface.dart';
-import 'package:DotaApp/client/stratz_client.dart';
-import 'package:DotaApp/infrastructure/http_cache_interface.dart';
-import 'package:DotaApp/infrastructure/http_client_interface.dart';
+import 'package:dota_app/client/models/hero/hero.dart';
+import 'package:dota_app/client/models/hero_role/hero_role.dart';
+import 'package:dota_app/client/stratz_client_interface.dart';
+import 'package:dota_app/client/stratz_client.dart';
+import 'package:dota_app/infrastructure/http_cache_interface.dart';
+import 'package:dota_app/infrastructure/http_client_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../mocks_implementations/mock_http_cache.dart';

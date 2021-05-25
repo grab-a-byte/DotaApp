@@ -1,4 +1,4 @@
-import 'package:DotaApp/client/models/hero/hero.dart';
+import 'package:dota_app/client/models/hero/hero.dart';
 
 List<Hero> getSingleHeroInList() {
   return [Hero(1, "name", "displayName", "shortName", [], [])];

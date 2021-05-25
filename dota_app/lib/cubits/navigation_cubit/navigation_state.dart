@@ -13,5 +13,5 @@ class NavigateToHeroPage extends Equatable implements NavigationState {
 
 class NavigateToHomePage extends Equatable implements NavigationState {
   @override
-  List<Object> get props => [];
+  List<Object> get props => ["NavigateToHomePage"];
 }

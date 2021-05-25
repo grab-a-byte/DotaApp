@@ -1,4 +1,4 @@
-import 'package:DotaApp/infrastructure/http_cache_interface.dart';
+import 'package:dota_app/infrastructure/http_cache_interface.dart';
 
 class MockHttpCache implements IHttpCache {
   String? getValue;

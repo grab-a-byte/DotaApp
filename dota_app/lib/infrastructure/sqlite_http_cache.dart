@@ -4,12 +4,12 @@ import './time.dart';
 import 'get_it.dart';
 import 'http_cache_interface.dart';
 
-class HttpCache implements IHttpCache {
+class SqliteHttpCache implements IHttpCache {
   final Duration _cacheDuration = Duration(hours: 1);
 
   final IDatabseService _databaseService;
 
-  HttpCache(IDatabseService? databseService)
+  SqliteHttpCache(IDatabseService? databseService)
       : _databaseService = databseService ?? getIt.get<IDatabseService>();
 
   bool _isExpired(HttpCacheRecord record) {

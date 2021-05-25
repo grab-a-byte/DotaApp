@@ -1,7 +1,7 @@
-import 'package:DotaApp/client/models/hero_role/hero_role.dart';
-import 'package:DotaApp/client/models/hero_ability/hero_ability.dart';
-import 'package:DotaApp/client/models/hero/hero.dart';
-import 'package:DotaApp/client/stratz_client_interface.dart';
+import 'package:dota_app/client/models/hero/hero.dart';
+import 'package:dota_app/client/models/hero_ability/hero_ability.dart';
+import 'package:dota_app/client/models/hero_role/hero_role.dart';
+import 'package:dota_app/client/stratz_client_interface.dart';
 
 class MockStratzClient implements IStratzClient {
   List<HeroAbility>? heroAbilityResponse;

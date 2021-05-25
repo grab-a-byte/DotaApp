@@ -1,4 +1,4 @@
-import 'package:DotaApp/infrastructure/http_client_interface.dart';
+import 'package:dota_app/infrastructure/http_client_interface.dart';
 
 class MockHttpClient implements IHttpClient {
   String? getValue;

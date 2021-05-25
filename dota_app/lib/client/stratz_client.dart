@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 import 'dart:convert';
 
 import '../infrastructure/get_it.dart';
@@ -26,7 +25,7 @@ class StratzClient implements IStratzClient {
   Future<List<Hero>> getHeroes() async {
     String response =
         await (_cache.get(_heroesEndpoint, (x) => _client.get(Uri.parse(x))));
-    LinkedHashMap json = jsonDecode(response);
+    Map json = jsonDecode(response);
     return json.values.map((e) => Hero.fromJson(e)).toList();
   }
 
@@ -43,7 +42,7 @@ class StratzClient implements IStratzClient {
   Future<List<HeroAbility>> getHeroAbilities() async {
     String response = await (_cache.get(
         _abilitiesEndpoint, (x) => _client.get(Uri.parse(x))));
-    LinkedHashMap json = jsonDecode(response);
+    Map json = jsonDecode(response);
 
     return json.values.map((e) => HeroAbility.fromJson(e)).toList();
   }

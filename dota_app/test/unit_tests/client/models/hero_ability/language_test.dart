@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:DotaApp/client/models/hero_ability/language.dart';
+import 'package:dota_app/client/models/hero_ability/language.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'language_json.dart';

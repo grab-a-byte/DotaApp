@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'client/stratz_client_interface.dart';
+import 'cubits/hero_cubit/hero_cubit.dart';
+import 'cubits/heroes_cubit/heroes_cubit.dart';
 import 'cubits/navigation_cubit/navigation_cubit.dart';
-import 'cubits/navigation_cubit/navigation_state.dart';
 import 'infrastructure/get_it.dart';
-import 'pages/hero_page/hero_page.dart';
-import 'pages/heroes_page/heroes_page.dart';
+import 'mappers/hero_ability_to_ability_view_model.dart';
+import 'widgets/app_navigator.dart';
 
 void main() {
   setupDependencyInjection();
@@ -28,8 +30,23 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
             scaffoldBackgroundColor: Colors.blueAccent.shade700),
-        home: BlocProvider(
-          create: (_) => NavigationCubit()..navigateToHomePage(),
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) {
+              return NavigationCubit()..navigateToHomePage();
+            }),
+            BlocProvider(create: (_) {
+              return HeroCubit(
+                client: getIt.get<IStratzClient>(),
+                mapper: HeroAbilityMapper(),
+              );
+            }),
+            BlocProvider(create: (_) {
+              return HeroesCubit(
+                client: getIt.get<IStratzClient>(),
+              )..getHeroes();
+            })
+          ],
           child: Scaffold(
             body: SafeArea(
               child: Container(
@@ -41,31 +58,10 @@ class MyApp extends StatelessWidget {
                       stops: [0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
-                child: BlocBuilder<NavigationCubit, NavigationState>(
-                  builder: (context, state) {
-                    if (state is NavigateToHomePage) {
-                      return _popScopeWithWidget(HeroesPage(), context);
-                    } else if (state is NavigateToHeroPage) {
-                      return _popScopeWithWidget(
-                          HeroPage(state.heroId), context);
-                    } else {
-                      return Placeholder();
-                    }
-                  },
-                ),
+                child: AppNavigator(),
               ),
             ),
           ),
         ));
-  }
-
-  Widget _popScopeWithWidget(Widget child, BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        context.read<NavigationCubit>().goBack();
-        return Future.value(false);
-      },
-      child: child,
-    );
   }
 }

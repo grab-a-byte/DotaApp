@@ -30,13 +30,13 @@ class HeroAbilityHeader extends StatelessWidget {
                     NullableTextBuilder(
                       model.manacost,
                       (e) => 'ManaCost $e',
-                      TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12),
                       nullText: 'N/A',
                     ),
                     NullableTextBuilder(
                       model.cooldown,
                       (e) => 'Cooldown $e',
-                      TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12),
                       nullText: 'N/A',
                     ),
                   ])),

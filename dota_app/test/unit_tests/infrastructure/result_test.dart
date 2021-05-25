@@ -1,4 +1,4 @@
-import 'package:DotaApp/infrastructure/result.dart';
+import 'package:dota_app/infrastructure/result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

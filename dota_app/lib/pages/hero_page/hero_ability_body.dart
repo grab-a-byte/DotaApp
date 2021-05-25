@@ -18,7 +18,6 @@ class HeroAbilityBody extends StatelessWidget {
           child: NullableTextBuilder(
             model.damage,
             (s) => 'DAMAGE : $s',
-            TextStyle(),
             nullText: 'DAMAGE : N/A',
           ),
         )
@@ -37,7 +36,11 @@ class HeroAbilityBody extends StatelessWidget {
             )))
         ..add(Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Text(model.lore!),
+          child: NullableTextBuilder(
+            model.lore,
+            (s) => s,
+            nullText: "",
+          ),
         )),
     );
   }

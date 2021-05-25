@@ -1,7 +1,7 @@
-import 'package:DotaApp/client/models/hero/hero.dart';
-import 'package:DotaApp/client/stratz_client_interface.dart';
-import 'package:DotaApp/cubits/heroes_cubit/heroes_cubit.dart';
-import 'package:DotaApp/cubits/heroes_cubit/heroes_cubit_state.dart';
+import 'package:dota_app/client/models/hero/hero.dart';
+import 'package:dota_app/client/stratz_client_interface.dart';
+import 'package:dota_app/cubits/heroes_cubit/heroes_cubit.dart';
+import 'package:dota_app/cubits/heroes_cubit/heroes_cubit_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 

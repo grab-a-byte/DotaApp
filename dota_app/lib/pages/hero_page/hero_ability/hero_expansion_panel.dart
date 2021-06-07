@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../view_models/hero_page/hero_ability_view_model.dart';
+import '../../../view_models/hero_page/hero_ability_view_model.dart';
 import 'hero_ability_body.dart';
 import 'hero_ability_header.dart';
 
@@ -13,7 +13,7 @@ class HeroExpansionPanel extends StatefulWidget {
   State<StatefulWidget> createState() => HeroExpansionPanelState(model);
 }
 
-class HeroExpansionPanelState extends State<StatefulWidget> {
+class HeroExpansionPanelState extends State<HeroExpansionPanel> {
   late List<HeroRows> _rows;
 
   HeroExpansionPanelState(List<HeroAbilityViewModel> models) {
@@ -24,13 +24,26 @@ class HeroExpansionPanelState extends State<StatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionPanelList(
-      expansionCallback: (index, isExpanded) {
-        setState(() {
-          _rows[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _rows.map((e) => e.panel).toList(),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Ability Details",
+            textAlign: TextAlign.left,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+          ),
+          ExpansionPanelList(
+            expansionCallback: (index, isExpanded) {
+              setState(() {
+                _rows[index].isExpanded = !isExpanded;
+              });
+            },
+            children: _rows.map((e) => e.panel).toList(),
+          ),
+        ],
+      ),
     );
   }
 }

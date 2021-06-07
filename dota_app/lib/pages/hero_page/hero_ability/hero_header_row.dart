@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../view_models/hero_page/hero_view_model.dart';
+import '../../../view_models/hero_page/hero_view_model.dart';
 
 class HeroHeaderRow extends StatelessWidget {
   final HeroViewModel hero;

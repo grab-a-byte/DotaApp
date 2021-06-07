@@ -1,3 +1,4 @@
+import 'package:dota_app/pages/hero_page/talent_breakdown/talent_breakdown_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,8 +8,8 @@ import '../../cubits/hero_cubit/hero_cubit_state.dart';
 import '../../infrastructure/get_it.dart';
 import '../../mappers/hero_ability_to_ability_view_model.dart';
 import '../../view_models/hero_page/hero_view_model.dart';
-import 'hero_expansion_panel.dart';
-import 'hero_header_row.dart';
+import 'hero_ability/hero_expansion_panel.dart';
+import 'hero_ability/hero_header_row.dart';
 
 class HeroPage extends StatelessWidget {
   final int? _heroId;
@@ -47,6 +48,7 @@ class HeroPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
             child: ListView(
               children: [HeroHeaderRow(model)]
+                ..add(TalentBreakdownPanel())
                 ..add(HeroExpansionPanel(model.abilities)),
             ),
           ),

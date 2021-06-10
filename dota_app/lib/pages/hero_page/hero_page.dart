@@ -1,4 +1,3 @@
-import 'package:dota_app/pages/hero_page/talent_breakdown/talent_breakdown_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,10 +5,13 @@ import '../../client/stratz_client_interface.dart';
 import '../../cubits/hero_cubit/hero_cubit.dart';
 import '../../cubits/hero_cubit/hero_cubit_state.dart';
 import '../../infrastructure/get_it.dart';
-import '../../mappers/hero_ability_to_ability_view_model.dart';
+import '../../mappers/hero_ability_mapper.dart';
+import '../../mappers/hero_mapper.dart';
+import '../../mappers/hero_stat_mapper.dart';
 import '../../view_models/hero_page/hero_view_model.dart';
-import 'hero_ability/hero_expansion_panel.dart';
+import 'hero_ability/hero_ability_expansion_panel.dart';
 import 'hero_ability/hero_header_row.dart';
+import 'hero_stats/hero_stats_panel.dart';
 
 class HeroPage extends StatelessWidget {
   final int? _heroId;
@@ -21,7 +23,7 @@ class HeroPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => HeroCubit(
         client: getIt.get<IStratzClient>(),
-        mapper: HeroAbilityMapper(),
+        mapper: HeroMapper(HeroAbilityMapper(), HeroStatMapper()),
       )..getHero(_heroId),
       child: BlocBuilder<HeroCubit, HeroCubitState>(
         builder: (context, state) {
@@ -48,8 +50,8 @@ class HeroPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
             child: ListView(
               children: [HeroHeaderRow(model)]
-                ..add(TalentBreakdownPanel())
-                ..add(HeroExpansionPanel(model.abilities)),
+                ..add(HeroStatsPanel(model: model.stats))
+                ..add(HeroAbilityExpansionPanel(model.abilities)),
             ),
           ),
         ),

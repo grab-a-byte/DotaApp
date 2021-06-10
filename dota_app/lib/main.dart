@@ -3,11 +3,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'client/stratz_client_interface.dart';
-import 'cubits/hero_cubit/hero_cubit.dart';
 import 'cubits/heroes_cubit/heroes_cubit.dart';
 import 'cubits/navigation_cubit/navigation_cubit.dart';
 import 'infrastructure/get_it.dart';
-import 'mappers/hero_ability_to_ability_view_model.dart';
 import 'widgets/app_navigator.dart';
 
 void main() {
@@ -35,12 +33,12 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) {
               return NavigationCubit()..navigateToHomePage();
             }),
-            BlocProvider(create: (_) {
-              return HeroCubit(
-                client: getIt.get<IStratzClient>(),
-                mapper: HeroAbilityMapper(),
-              );
-            }),
+            // BlocProvider(create: (_) {
+            //   return HeroCubit(
+            //     client: getIt.get<IStratzClient>(),
+            //     mapper: HeroMapper(HeroAbilityMapper(), HeroStatMapper()),
+            //   );
+            // }),
             BlocProvider(create: (_) {
               return HeroesCubit(
                 client: getIt.get<IStratzClient>(),

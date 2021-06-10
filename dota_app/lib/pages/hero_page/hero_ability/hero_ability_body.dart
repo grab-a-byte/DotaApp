@@ -28,7 +28,7 @@ class HeroAbilityBody extends StatelessWidget {
             )))
         ..add(Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Text(model.description),
+          child: Text(model.description ?? "No description"),
         ))
         ..addAll(model.notes!.map((e) => Padding(
               padding: const EdgeInsets.all(5.0),

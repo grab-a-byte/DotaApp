@@ -7,7 +7,7 @@ class HeroAbilityViewModel extends Equatable {
 
   final String? displayName;
   final String? _name;
-  final String description;
+  final String? description;
   final List<String>? attributes;
   final String? lore;
   final List<String>? notes;

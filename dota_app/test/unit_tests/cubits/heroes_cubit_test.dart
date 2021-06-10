@@ -27,7 +27,7 @@ void main() {
       expect(
           cubit.state,
           HeroesLoaded([
-            Hero(1, "bob", "bob", "bob", [], []),
+            Hero(1, "bob", "bob", [], [], null),
           ]));
     });
   });

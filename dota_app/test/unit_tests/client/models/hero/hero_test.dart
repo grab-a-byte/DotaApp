@@ -12,7 +12,6 @@ void main() {
 
     var result = Hero.fromJson(json);
     expect(result.id, 1);
-    expect(result.name, "npc_dota_hero_antimage");
     expect(result.displayName, "Anti-Mage");
     expect(result.shortName, "antimage");
   });

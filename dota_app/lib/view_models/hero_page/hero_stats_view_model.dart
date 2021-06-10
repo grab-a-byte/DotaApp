@@ -1,15 +1,14 @@
-class HeroStatsViewModel {
-  final int
-      health; // All heroes have base hit points of 200 plus 20 for each point of Strength.
+import 'package:equatable/equatable.dart';
+
+class HeroStatsViewModel extends Equatable {
+  final int health;
   final double armour;
   final double moveSpeed;
   final double attackDamageMin;
   final double attackDamageMax;
-  final double attackSpeed; // AttackRate ÷ (1 + (Agility ÷ 100))
+  final double attackSpeed;
   final double attackPoint;
-  final double spellDamage;
-  final double
-      manaPool; // All heroes have a base mana of 75, plus 12 per each point of Intelligence.
+  final double manaPool;
 
   HeroStatsViewModel(
       {required this.health,
@@ -19,6 +18,17 @@ class HeroStatsViewModel {
       required this.attackDamageMax,
       required this.attackSpeed,
       required this.attackPoint,
-      required this.spellDamage,
       required this.manaPool});
+
+  @override
+  List<Object?> get props => [
+        health,
+        armour,
+        moveSpeed,
+        attackDamageMin,
+        attackDamageMax,
+        attackSpeed,
+        attackPoint,
+        manaPool
+      ];
 }

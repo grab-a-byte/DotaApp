@@ -1,7 +1,7 @@
 import 'package:dota_app/client/models/hero_ability/hero_ability.dart';
 import 'package:dota_app/client/models/hero_ability/language.dart';
 import 'package:dota_app/client/models/hero_ability/stat.dart';
-import 'package:dota_app/mappers/hero_ability_to_ability_view_model.dart';
+import 'package:dota_app/mappers/hero_ability_mapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

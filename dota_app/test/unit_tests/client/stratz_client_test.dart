@@ -13,17 +13,15 @@ import 'models/hero_role/hero_role_json.dart';
 
 bool matchHeros(Hero hero1, Hero hero2) {
   return hero1.id == hero2.id &&
-      hero1.name == hero2.name &&
       hero1.displayName == hero2.displayName &&
       hero1.shortName == hero2.shortName;
 }
 
 void main() {
   test("Stratz Client retrives Hero list when asked", () async {
-    Hero expectedHero1 =
-        Hero(1, "npc_dota_hero_antimage", "Anti-Mage", "antimage", [], []);
+    Hero expectedHero1 = Hero(1, "Anti-Mage", "antimage", [], [], null);
 
-    Hero expectedHero2 = Hero(2, "npc_dota_hero_axe", "Axe", "axe", [], []);
+    Hero expectedHero2 = Hero(2, "Axe", "axe", [], [], null);
 
     IHttpCache fakeCache = MockHttpCache(getValue: multipleHeroesJson);
     IHttpClient fakeClient = MockHttpClient(getValue: multipleHeroesJson);

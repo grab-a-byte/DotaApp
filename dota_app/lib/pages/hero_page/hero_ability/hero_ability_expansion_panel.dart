@@ -4,19 +4,19 @@ import '../../../view_models/hero_page/hero_ability_view_model.dart';
 import 'hero_ability_body.dart';
 import 'hero_ability_header.dart';
 
-class HeroExpansionPanel extends StatefulWidget {
+class HeroAbilityExpansionPanel extends StatefulWidget {
   final List<HeroAbilityViewModel> model;
 
-  HeroExpansionPanel(this.model);
+  HeroAbilityExpansionPanel(this.model);
 
   @override
-  State<StatefulWidget> createState() => HeroExpansionPanelState(model);
+  State<StatefulWidget> createState() => HeroAbilityExpansionPanelState(model);
 }
 
-class HeroExpansionPanelState extends State<HeroExpansionPanel> {
+class HeroAbilityExpansionPanelState extends State<HeroAbilityExpansionPanel> {
   late List<HeroRows> _rows;
 
-  HeroExpansionPanelState(List<HeroAbilityViewModel> models) {
+  HeroAbilityExpansionPanelState(List<HeroAbilityViewModel> models) {
     _rows = models
         .map((e) => HeroRows(HeroAbilityHeader(e), HeroAbilityBody(e)))
         .toList();

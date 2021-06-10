@@ -6,9 +6,9 @@ class HeroAbilityMapper {
       HeroAbilityViewModel(
         ability.language!.displayName,
         ability.name,
-        ability.language!.description!.first,
-        ability.language!.lore,
-        ability.language!.attributes,
+        ability.language?.description?.first,
+        ability.language?.lore,
+        ability.language?.attributes,
         ability.stat!.cooldown,
         ability.stat!.manaCost,
         ability.stat!.damage,

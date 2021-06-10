@@ -8,7 +8,9 @@ import 'package:dota_app/client/models/hero_ability/hero_ability.dart'
 import 'package:dota_app/client/stratz_client_interface.dart';
 import 'package:dota_app/cubits/hero_cubit/hero_cubit.dart';
 import 'package:dota_app/cubits/hero_cubit/hero_cubit_state.dart';
-import 'package:dota_app/mappers/hero_ability_to_ability_view_model.dart';
+import 'package:dota_app/mappers/hero_ability_mapper.dart';
+import 'package:dota_app/mappers/hero_mapper.dart';
+import 'package:dota_app/mappers/hero_stat_mapper.dart';
 import 'package:dota_app/view_models/hero_page/hero_ability_view_model.dart';
 import 'package:dota_app/view_models/hero_page/hero_view_model.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -18,7 +20,7 @@ import '../mocks_implementations/mock_stratz_client.dart';
 
 void main() {
   group("HeroCubit", () {
-    Hero hero = Hero(1, "test", "test", "test", [h_role.HeroRole(0, 1)], []);
+    Hero hero = Hero(1, "test", "test", [h_role.HeroRole(0, 1)], [], null);
     role.HeroRole heroRole = role.HeroRole(0, "carry", "roles.carry");
     ability.HeroAbility heroAbility = ability.HeroAbility(
         0,
@@ -31,22 +33,27 @@ void main() {
         heroRoleResponse: [heroRole],
         heroResponse: [hero]);
 
-    var expectedRepsonse = HeroViewModel(hero.displayName, hero.shortName, [
-      heroRole.name
-    ], [
-      HeroAbilityViewModel(
-          heroAbility.name,
-          heroAbility.language!.displayName,
-          heroAbility.language!.description!.first,
-          heroAbility.language!.lore,
-          heroAbility.language!.attributes,
-          [1.0],
-          [1.0],
-          [1.0],
-          ["test"])
-    ]);
+    var expectedRepsonse = HeroViewModel(
+        hero.displayName,
+        hero.shortName,
+        [heroRole.name],
+        [
+          HeroAbilityViewModel(
+              heroAbility.name,
+              heroAbility.language!.displayName,
+              heroAbility.language!.description!.first,
+              heroAbility.language!.lore,
+              heroAbility.language!.attributes,
+              [1.0],
+              [1.0],
+              [1.0],
+              ["test"])
+        ],
+        null);
     blocTest("Emits Loading then Hero when getting Hero",
-        build: () => HeroCubit(client: client, mapper: HeroAbilityMapper()),
+        build: () => HeroCubit(
+            client: client,
+            mapper: HeroMapper(HeroAbilityMapper(), HeroStatMapper())),
         act: (dynamic cubit) async => await cubit.getHero(1),
         expect: () => [
               HeroLoading(),

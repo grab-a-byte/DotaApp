@@ -21,7 +21,7 @@ class HeroStatsViewModel extends Equatable {
       required this.manaPool});
 
   @override
-  List<Object?> get props => [
+  List<Object> get props => [
         health,
         armour,
         moveSpeed,
@@ -31,4 +31,21 @@ class HeroStatsViewModel extends Equatable {
         attackPoint,
         manaPool
       ];
+
+  String get healthText => 'Health: $health';
+
+  String get armourText => 'Armour: ${armour.toStringAsFixed(2)}';
+
+  String get moveSpeedText => 'Move Speed: ${moveSpeed.toStringAsFixed(2)}';
+
+  String get attackDamageText =>
+      'Attack Damage: ${attackDamageMin.toStringAsFixed(2)} - ${attackDamageMax.toStringAsFixed(2)}';
+
+  String get attackSpeedText =>
+      'Attack Speed: ${attackSpeed.toStringAsFixed(2)}';
+
+  String get attackPointText =>
+      'Attack Point: ${attackPoint.toStringAsFixed(2)}';
+
+  String get manaPoolText => 'Mana: ${manaPool.toStringAsFixed(2)}';
 }

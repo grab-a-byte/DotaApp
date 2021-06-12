@@ -14,6 +14,7 @@ class HeroStatsPanel extends StatelessWidget {
         : ExpansionTile(
             title: Text("Something Something"),
             children: [
+              //TODO map all texts
               Container(
                 height: 50,
                 child: Placeholder(),

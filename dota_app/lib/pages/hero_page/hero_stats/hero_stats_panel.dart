@@ -12,14 +12,17 @@ class HeroStatsPanel extends StatelessWidget {
     return model == null
         ? Text("Something went wrong getting stats")
         : ExpansionTile(
-            title: Text("Something Something"),
-            children: [
-              //TODO map all texts
-              Container(
-                height: 50,
-                child: Placeholder(),
-              )
-            ],
+            title: Text(
+              "Hero Stat",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            children: model!.allTexts
+                .map((e) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Align(
+                          alignment: Alignment.centerLeft, child: Text(e)),
+                    ))
+                .toList(),
           );
   }
 }

@@ -48,4 +48,13 @@ class HeroStatsViewModel extends Equatable {
       'Attack Point: ${attackPoint.toStringAsFixed(2)}';
 
   String get manaPoolText => 'Mana: ${manaPool.toStringAsFixed(2)}';
+
+  List<String> get allTexts => [
+        healthText,
+        armourText,
+        moveSpeedText,
+        attackDamageText,
+        attackSpeedText,
+        attackPointText
+      ];
 }

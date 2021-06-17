@@ -18,18 +18,31 @@ class DebouncableTextbox extends StatefulWidget {
 
 class DebouncableTextboxState extends State<DebouncableTextbox> {
   Timer? _timer;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_timer?.isActive ?? false) _timer!.cancel();
+      _timer = Timer(Duration(milliseconds: widget._numberOfMilliseconds), () {
+        widget._functionToDebounce(_controller.text);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: _controller,
       decoration: InputDecoration(prefixIcon: Icon(widget._icon)),
-      onChanged: (value) {
-        if (_timer?.isActive ?? false) _timer!.cancel();
-        _timer =
-            Timer(Duration(milliseconds: widget._numberOfMilliseconds), () {
-          widget._functionToDebounce(value);
-        });
-      },
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _timer?.cancel();
+    super.dispose();
   }
 }

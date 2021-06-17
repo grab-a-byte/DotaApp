@@ -16,16 +16,19 @@ class HeroesCubit extends Cubit<HeroesCubitState> {
   void getHeroes() async {
     emit(LoadingHeroes());
     List<Hero> heroes = await _client.getHeroes();
-    emit(HeroesLoaded(heroes));
+    emit(HeroesLoaded(_sortHeroes(heroes)));
   }
 
   Future filterHeroes(String name) async {
     emit(LoadingHeroes());
     List<Hero> heroes = await _client.getHeroes();
-    Iterable<Hero> filteredHeroes = heroes
+    List<Hero> filteredHeroes = heroes
         .where((element) =>
             element.displayName!.toLowerCase().contains(name.toLowerCase()))
         .toList();
-    emit(HeroesLoaded(filteredHeroes as List<Hero>));
+    emit(HeroesLoaded(_sortHeroes(filteredHeroes)));
   }
+
+  List<Hero> _sortHeroes(List<Hero> heroes) =>
+      heroes.toList()..sort((a, b) => a.displayName!.compareTo(b.displayName!));
 }

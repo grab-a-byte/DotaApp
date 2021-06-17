@@ -6,7 +6,7 @@ List<Hero> getSingleHeroInList() {
 
 List<Hero> getMultipleHeroInList() {
   return [
-    Hero(1, "displayName", "shortName", [], [], null),
     Hero(1, "bob", "bob", [], [], null),
+    Hero(1, "displayName", "shortName", [], [], null),
   ];
 }

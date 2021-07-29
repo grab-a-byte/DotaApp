@@ -1,4 +1,5 @@
 import 'package:dota_app/client/models/hero/hero.dart';
+import 'package:dota_app/client/models/hero_boots/hero_boots.dart';
 import 'package:dota_app/client/models/hero_role/hero_role.dart';
 import 'package:dota_app/client/stratz_client_interface.dart';
 import 'package:dota_app/client/stratz_client.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../mocks_implementations/mock_http_cache.dart';
 import '../mocks_implementations/mock_http_client.dart';
 import 'models/hero/hero_json.dart';
+import 'models/hero_boots/hero_boots_json.dart';
 import 'models/hero_role/hero_role_json.dart';
 
 bool matchHeros(Hero hero1, Hero hero2) {
@@ -50,6 +52,31 @@ void main() {
     expect(result.length, 9);
     expect(expectedRole1, result[0]);
     expect(expectedRole2, result[1]);
+  });
+
+  test('Stratz Client retrieves Hero Boots when asked', () async {
+    IHttpCache fakeCache = MockHttpCache(getValue: heroBootsJson);
+    IHttpClient fakeClient = MockHttpClient(getValue: heroBootsJson);
+
+    IStratzClient client = StratzClient(fakeClient, fakeCache);
+
+    HeroBoots result = await client.getHeroBoots(42);
+
+    expect(result.matchCount, 137471);
+    expect(result.events.length, 1);
+
+    final heroBootEvent = result.events.first;
+
+    expect(heroBootEvent.itemId, 29);
+    expect(heroBootEvent.time, 535.8329236895654);
+    expect(heroBootEvent.matchCount, 137111);
+    expect(heroBootEvent.wins, 0.5415028699374959);
+    expect(heroBootEvent.kills, 9.851273785473083);
+    expect(heroBootEvent.deaths, 5.093252911874321);
+    expect(heroBootEvent.assists, 8.908234933739816);
+    expect(heroBootEvent.goldEarned, 24384.69299326823);
+    expect(heroBootEvent.xp, 39445.83015221244);
+    expect(heroBootEvent.activations, 20.0);
   });
 
   //TODO Add Heroes Abilities

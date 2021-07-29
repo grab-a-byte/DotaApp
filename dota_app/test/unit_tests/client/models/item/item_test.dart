@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dota_app/client/models/hero_boots/item.dart';
+import 'package:dota_app/client/models/item/item.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'item_json.dart';

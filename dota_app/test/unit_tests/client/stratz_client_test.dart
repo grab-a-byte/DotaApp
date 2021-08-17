@@ -1,6 +1,7 @@
 import 'package:dota_app/client/models/hero/hero.dart';
 import 'package:dota_app/client/models/hero_boots/hero_boots.dart';
 import 'package:dota_app/client/models/hero_role/hero_role.dart';
+import 'package:dota_app/client/models/item/item.dart';
 import 'package:dota_app/client/stratz_client_interface.dart';
 import 'package:dota_app/client/stratz_client.dart';
 import 'package:dota_app/infrastructure/http_cache_interface.dart';
@@ -12,6 +13,7 @@ import '../mocks_implementations/mock_http_client.dart';
 import 'models/hero/hero_json.dart';
 import 'models/hero_boots/hero_boots_json.dart';
 import 'models/hero_role/hero_role_json.dart';
+import 'models/item/items_json.dart';
 
 bool matchHeros(Hero hero1, Hero hero2) {
   return hero1.id == hero2.id &&
@@ -77,6 +79,28 @@ void main() {
     expect(heroBootEvent.goldEarned, 24384.69299326823);
     expect(heroBootEvent.xp, 39445.83015221244);
     expect(heroBootEvent.activations, 20.0);
+  });
+
+  test('Stratz Client retrieves items when asked', () async {
+    IHttpCache fakeCache = MockHttpCache(getValue: itemsJson);
+    IHttpClient fakeClient = MockHttpClient(getValue: itemsJson);
+
+    IStratzClient client = StratzClient(fakeClient, fakeCache);
+
+    List<Item> result = await client.getItems();
+
+    expect(result.length, 2);
+
+    var firstItem = result.first;
+    var secondItem = result[1];
+
+    expect(firstItem.id, 1);
+    expect(firstItem.displayName, 'Blink Dagger');
+    expect(firstItem.name, 'item_blink');
+
+    expect(secondItem.id, 2);
+    expect(secondItem.displayName, 'Blades of Attack');
+    expect(secondItem.name, 'item_blades_of_attack');
   });
 
   //TODO Add Heroes Abilities

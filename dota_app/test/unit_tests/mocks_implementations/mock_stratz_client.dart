@@ -2,19 +2,22 @@ import 'package:dota_app/client/models/hero/hero.dart';
 import 'package:dota_app/client/models/hero_ability/hero_ability.dart';
 import 'package:dota_app/client/models/hero_boots/hero_boots.dart';
 import 'package:dota_app/client/models/hero_role/hero_role.dart';
+import 'package:dota_app/client/models/item/item.dart';
 import 'package:dota_app/client/stratz_client_interface.dart';
 
 class MockStratzClient implements IStratzClient {
-  List<HeroAbility>? heroAbilityResponse;
-  List<HeroRole>? heroRoleResponse;
-  List<Hero>? heroResponse;
-  HeroBoots? heroBootsResponse;
+  final List<HeroAbility>? heroAbilityResponse;
+  final List<HeroRole>? heroRoleResponse;
+  final List<Hero>? heroResponse;
+  final HeroBoots? heroBootsResponse;
+  final List<Item>? itemsResponse;
 
   MockStratzClient(
       {this.heroAbilityResponse,
       this.heroRoleResponse,
       this.heroResponse,
-      this.heroBootsResponse});
+      this.heroBootsResponse,
+      this.itemsResponse});
 
   @override
   Future<List<HeroAbility>> getHeroAbilities() =>
@@ -29,6 +32,9 @@ class MockStratzClient implements IStratzClient {
   @override
   Future<HeroBoots> getHeroBoots(int heroId) =>
       _getValueOrError(heroBootsResponse);
+
+  @override
+  Future<List<Item>> getItems() => _getValueOrError(itemsResponse);
 
   Future<T> _getValueOrError<T>(T? value) =>
       value == null ? Future.error("Faked Error") : Future.value(value);

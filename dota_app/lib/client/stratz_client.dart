@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dota_app/client/models/item/item.dart';
+
 import '../infrastructure/get_it.dart';
 import '../infrastructure/http_cache_interface.dart';
 import '../infrastructure/http_client_interface.dart';
@@ -16,6 +18,8 @@ class StratzClient implements IStratzClient {
   final String _abilitiesEndpoint = 'https://api.stratz.com/api/v1/ability';
   String _heroBootsEndpoint(int heroId) =>
       'https://api.stratz.com/api/v1/hero/${heroId}/itemBootPurchase';
+
+  final String _itemsEndpoint = 'https://api.stratz.com/api/v1/item';
 
   late final IHttpClient _client;
   late final IHttpCache _cache;
@@ -58,5 +62,13 @@ class StratzClient implements IStratzClient {
     var json = jsonDecode(response);
 
     return HeroBoots.fromJson(json);
+  }
+
+  @override
+  Future<List<Item>> getItems() async {
+    String response =
+        await (_cache.get(_itemsEndpoint, (x) => _client.get(Uri.parse(x))));
+    Map json = jsonDecode(response);
+    return json.values.map((e) => Item.fromJson(e)).toList();
   }
 }

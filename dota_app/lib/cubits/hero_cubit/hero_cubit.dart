@@ -1,3 +1,5 @@
+import 'package:dota_app/client/models/hero_boots/hero_boots.dart';
+import 'package:dota_app/client/models/item/item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../client/models/hero/hero.dart';
@@ -15,11 +17,13 @@ class HeroCubit extends Cubit<HeroCubitState> {
 
   HeroCubit({required this.client, required this.mapper}) : super(defaultState);
 
-  void getHero(int? id) async {
+  void getHero(int id) async {
     emit(HeroLoading());
     List<Hero> heroes = await client.getHeroes();
     Hero hero = heroes.firstWhere((x) => x.id == id);
     List<HeroRole> roles = await client.getHeroRoles();
+    HeroBoots boots = await client.getHeroBoots(id);
+    List<Item> items = await client.getItems();
 
     List<HeroAbility> abilities = await client.getHeroAbilities();
 
@@ -33,7 +37,7 @@ class HeroCubit extends Cubit<HeroCubitState> {
         .where((role) => hero.roles!.map((x) => x.roleId).contains(role.id))
         .toList();
 
-    var vm = mapper.toViewModel(hero, heroAbilities, heroRoles);
+    var vm = mapper.toViewModel(hero, heroAbilities, heroRoles, boots, items);
 
     emit(HeroLoaded(vm));
   }

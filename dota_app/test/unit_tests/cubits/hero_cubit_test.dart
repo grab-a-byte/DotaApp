@@ -2,6 +2,7 @@ import 'package:dota_app/client/models/hero/hero.dart';
 import 'package:dota_app/client/models/hero/hero_role.dart' as h_role;
 import 'package:dota_app/client/models/hero_ability/language.dart';
 import 'package:dota_app/client/models/hero_ability/stat.dart';
+import 'package:dota_app/client/models/hero_boots/hero_boots.dart';
 import 'package:dota_app/client/models/hero_role/hero_role.dart' as role;
 import 'package:dota_app/client/models/hero_ability/hero_ability.dart'
     as ability;
@@ -9,6 +10,7 @@ import 'package:dota_app/client/stratz_client_interface.dart';
 import 'package:dota_app/cubits/hero_cubit/hero_cubit.dart';
 import 'package:dota_app/cubits/hero_cubit/hero_cubit_state.dart';
 import 'package:dota_app/mappers/hero_ability_mapper.dart';
+import 'package:dota_app/mappers/hero_boots_mapper.dart';
 import 'package:dota_app/mappers/hero_mapper.dart';
 import 'package:dota_app/mappers/hero_stat_mapper.dart';
 import 'package:dota_app/view_models/hero_page/hero_ability_view_model.dart';
@@ -31,7 +33,9 @@ void main() {
     IStratzClient client = MockStratzClient(
         heroAbilityResponse: [heroAbility],
         heroRoleResponse: [heroRole],
-        heroResponse: [hero]);
+        heroResponse: [hero],
+        heroBootsResponse: HeroBoots(0, []),
+        itemsResponse: []);
 
     var expectedRepsonse = HeroViewModel(
         hero.displayName,
@@ -49,11 +53,13 @@ void main() {
               [1.0],
               ["test"])
         ],
+        null,
         null);
     blocTest("Emits Loading then Hero when getting Hero",
         build: () => HeroCubit(
             client: client,
-            mapper: HeroMapper(HeroAbilityMapper(), HeroStatMapper())),
+            mapper: HeroMapper(
+                HeroAbilityMapper(), HeroStatMapper(), HeroBootsMapper())),
         act: (dynamic cubit) async => await cubit.getHero(1),
         expect: () => [
               HeroLoading(),

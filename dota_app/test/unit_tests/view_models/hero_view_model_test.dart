@@ -12,6 +12,7 @@ void main() {
           HeroAbilityViewModel(
               "test", "test", "test", "test", ["test"], [], [], [], [])
         ],
+        null,
         null);
     var instance2 = HeroViewModel(
         "Test",
@@ -21,20 +22,21 @@ void main() {
           HeroAbilityViewModel(
               "test", "test", "test", "test", ["test"], [], [], [], [])
         ],
+        null,
         null);
 
     expect(instance1 == instance2, true);
   });
 
   test("Equality on seperate instances fails when not identical", () {
-    var instance1 = HeroViewModel("Test", "test", ["not test"], [], null);
-    var instance2 = HeroViewModel("Test", "test", ["test"], [], null);
+    var instance1 = HeroViewModel("Test", "test", ["not test"], [], null, null);
+    var instance2 = HeroViewModel("Test", "test", ["test"], [], null, null);
 
     expect(instance1 != instance2, true);
   });
 
   test("image location generated corrctly", () {
-    var vm = HeroViewModel("Test", "test", ["not test"], [], null);
+    var vm = HeroViewModel("Test", "test", ["not test"], [], null, null);
 
     expect(vm.heroImageLocation, 'images/heroes/test_vert.png');
   });

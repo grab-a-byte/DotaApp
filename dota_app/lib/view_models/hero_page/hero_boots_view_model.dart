@@ -1,4 +1,6 @@
-class HeroBootsViewModel {
+import 'package:equatable/equatable.dart';
+
+class HeroBootsViewModel extends Equatable {
   final String itemName;
   final Duration time;
   final int pickRate;
@@ -9,4 +11,15 @@ class HeroBootsViewModel {
 
   HeroBootsViewModel(this.itemName, this.time, this.pickRate, this.winRate,
       this.killDeathAssistRatio, this.goldPerMinute, this.experiencePerMinute);
+
+  @override
+  List<Object?> get props => [
+        itemName,
+        time,
+        pickRate,
+        winRate,
+        killDeathAssistRatio,
+        goldPerMinute,
+        experiencePerMinute
+      ];
 }

@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dota_app/client/models/item/item.dart';
-
 import '../infrastructure/get_it.dart';
 import '../infrastructure/http_cache_interface.dart';
 import '../infrastructure/http_client_interface.dart';
@@ -10,6 +8,7 @@ import 'models/hero/hero.dart';
 import 'models/hero_ability/hero_ability.dart';
 import 'models/hero_boots/hero_boots.dart';
 import 'models/hero_role/hero_role.dart';
+import 'models/item/item.dart';
 import 'stratz_client_interface.dart';
 
 class StratzClient implements IStratzClient {

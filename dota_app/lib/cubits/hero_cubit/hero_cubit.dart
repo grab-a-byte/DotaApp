@@ -1,10 +1,10 @@
-import 'package:dota_app/client/models/hero_boots/hero_boots.dart';
-import 'package:dota_app/client/models/item/item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../client/models/hero/hero.dart';
 import '../../client/models/hero_ability/hero_ability.dart';
+import '../../client/models/hero_boots/hero_boots.dart';
 import '../../client/models/hero_role/hero_role.dart';
+import '../../client/models/item/item.dart';
 import '../../client/stratz_client_interface.dart';
 import '../../mappers/hero_mapper.dart';
 import 'hero_cubit_state.dart';

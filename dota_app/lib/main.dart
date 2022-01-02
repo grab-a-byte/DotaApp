@@ -6,10 +6,13 @@ import 'client/stratz_client_interface.dart';
 import 'cubits/heroes_cubit/heroes_cubit.dart';
 import 'cubits/navigation_cubit/navigation_cubit.dart';
 import 'infrastructure/get_it.dart';
+import 'infrastructure/hive_setup.dart';
 import 'widgets/app_navigator.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupDependencyInjection();
+  await initializeHive();
   //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }

@@ -6,6 +6,7 @@ import '../../cubits/hero_cubit/hero_cubit.dart';
 import '../../cubits/hero_cubit/hero_cubit_state.dart';
 import '../../infrastructure/get_it.dart';
 import '../../mappers/hero_ability_mapper.dart';
+import '../../mappers/hero_boots_mapper.dart';
 import '../../mappers/hero_mapper.dart';
 import '../../mappers/hero_stat_mapper.dart';
 import '../../view_models/hero_page/hero_view_model.dart';
@@ -23,8 +24,9 @@ class HeroPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => HeroCubit(
         client: getIt.get<IStratzClient>(),
-        mapper: HeroMapper(HeroAbilityMapper(), HeroStatMapper()),
-      )..getHero(_heroId),
+        mapper: HeroMapper(
+            HeroAbilityMapper(), HeroStatMapper(), HeroBootsMapper()),
+      )..getHero(_heroId!),
       child: BlocBuilder<HeroCubit, HeroCubitState>(
         builder: (context, state) {
           if (state is HeroLoading) {

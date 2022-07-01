@@ -25,22 +25,22 @@ class HeroesPage extends StatelessWidget {
                 500,
                 Icons.search,
               ),
-              Expanded(
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(),
-                  padding: const EdgeInsets.all(8),
-                  itemCount: state.heroes.length,
-                  itemBuilder: (context, index) {
-                    var hero = state.heroes[index];
-                    return BlocBuilder<NavigationCubit, NavigationState>(
-                        builder: (context, state) => HeroCard(
-                            hero,
-                            () => context
-                                .read<NavigationCubit>()
-                                .navigateToHeroesPage(hero.id)));
-                  },
-                ),
-              ),
+              // Expanded(
+              //   child: ListView.separated(
+              //     separatorBuilder: (context, index) => const Divider(),
+              //     padding: const EdgeInsets.all(8),
+              //     itemCount: state.heroes.length,
+              //     itemBuilder: (context, index) {
+              //       var hero = state.heroes[index];
+              //       return BlocBuilder<NavigationCubit, NavigationState>(
+              //           builder: (context, state) => HeroCard(
+              //               hero,
+              //               () => context
+              //                   .read<NavigationCubit>()
+              //                   .navigateToHeroesPage(hero.id)));
+              //     },
+              //   ),
+              // ),
             ],
           );
         } else {

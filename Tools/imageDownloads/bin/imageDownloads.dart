@@ -39,13 +39,13 @@ void main(List<String> arguments) async {
 }
 
 void downloadHeroImages() =>
-    downloadImages('hero', 'heroes', imageAppend: '_vert');
+    _downloadImages('hero', 'heroes', imageAppend: '_vert');
 
-void downloadItemImages() => downloadImages('item', 'items');
+void downloadItemImages() => _downloadImages('item', 'items');
 
-void downloadAbilityImages() => downloadImages('ability', 'abilities');
+void downloadAbilityImages() => _downloadImages('ability', 'abilities');
 
-void downloadImages(String apiType, String cdnType,
+void _downloadImages(String apiType, String cdnType,
     {String imageAppend = ''}) async {
   var responses = await getApiResponse(apiType);
 

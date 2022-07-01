@@ -16,7 +16,7 @@ class StratzClient implements IStratzClient {
   final String _rolesEndpoint = 'https://api.stratz.com/api/v1/hero/roles';
   final String _abilitiesEndpoint = 'https://api.stratz.com/api/v1/ability';
   String _heroBootsEndpoint(int heroId) =>
-      'https://api.stratz.com/api/v1/hero/${heroId}/itemBootPurchase';
+      'https://api.stratz.com/api/v1/hero/$heroId/itemBootPurchase';
 
   final String _itemsEndpoint = 'https://api.stratz.com/api/v1/item';
 

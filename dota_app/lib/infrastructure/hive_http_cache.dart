@@ -25,7 +25,7 @@ class HiveHttpCache implements IHttpCache {
         return Result.error();
       }
       return Result.success(value);
-    } catch (e) {
+    } on Exception catch(e) {
       return Result.error();
     }
   }

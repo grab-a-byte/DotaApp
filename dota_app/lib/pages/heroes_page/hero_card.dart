@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../client/models/hero/hero.dart' as dota_hero;
+
+import '../../view_models/heroes_page/single_hero_view_model.dart';
 
 class HeroCard extends StatelessWidget {
-  final dota_hero.Hero _hero;
+  final SingleHeroViewModel _hero;
   final void Function() _onClick;
 
   HeroCard(this._hero, this._onClick);
@@ -30,7 +31,7 @@ class HeroCard extends StatelessWidget {
                     style: TextStyle(fontSize: 10),
                   ),
                   Text(
-                    _hero.displayName!,
+                    _hero.displayName,
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
